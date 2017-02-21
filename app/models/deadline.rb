@@ -1,0 +1,2 @@
+class Deadline < ApplicationRecord
+end
