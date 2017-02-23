@@ -1,2 +1,0 @@
-class Deadline < ApplicationRecord
-end
