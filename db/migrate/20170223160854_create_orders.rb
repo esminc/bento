@@ -1,10 +1,8 @@
 class CreateOrders < ActiveRecord::Migration[5.0]
   def change
     create_table :orders do |t|
-
-      t.integer :lunckbox_id
-      t.string :customer_name
-      t.date :orderd_on
+      t.date :date, null: false
+      t.datetime :closed_at
 
       t.timestamps
     end
