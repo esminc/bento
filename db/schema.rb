@@ -21,7 +21,7 @@ ActiveRecord::Schema.define(version: 20170223160854) do
 
   create_table "order_items", force: :cascade do |t|
     t.integer  "order_id",      null: false
-    t.integer  "lunckbox_id",   null: false
+    t.integer  "lunchbox_id",   null: false
     t.string   "customer_name", null: false
     t.text     "memo"
     t.datetime "received_at"
