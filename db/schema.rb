@@ -23,7 +23,6 @@ ActiveRecord::Schema.define(version: 20170223160854) do
     t.integer  "order_id",      null: false
     t.integer  "lunchbox_id",   null: false
     t.string   "customer_name", null: false
-    t.text     "memo"
     t.datetime "received_at"
     t.datetime "created_at",    null: false
     t.datetime "updated_at",    null: false
