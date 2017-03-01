@@ -13,7 +13,7 @@
 ActiveRecord::Schema.define(version: 20170223160854) do
 
   create_table "lunchboxes", force: :cascade do |t|
-    t.integer  "type",       null: false
+    t.integer  "name",       null: false
     t.integer  "price",      null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
