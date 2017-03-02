@@ -8,10 +8,10 @@ end
 gem 'rails', '~> 5.0.1'
 
 gem 'jbuilder'
+gem 'pg'
 gem 'puma'
 gem 'sass-rails'
 gem 'seed-fu'
-gem 'sqlite3'
 
 group :development, :test do
   gem 'bullet'
