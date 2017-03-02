@@ -191,22 +191,19 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  annotate
-  bullet
-  database_rewinder
-  factory_girl_rails
-  ffaker
-  listen (~> 3.0.5)
-  pry-byebug
-  pry-rails
-  puma (~> 3.0)
+  byebug
+  jbuilder
+  listen
+  puma
   rails (~> 5.0.1)
   rspec-rails
-  rubocop
-  sass-rails (~> 5.0)
+  sass-rails
   seed-fu
-  slim_lint
+  spring
+  spring-watcher-listen
   sqlite3
+  tzinfo-data
+  web-console
 
 BUNDLED WITH
    1.14.4
