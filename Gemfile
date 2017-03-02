@@ -12,6 +12,7 @@ gem 'seed-fu'
 gem 'sqlite3'
 
 group :development, :test do
+  gem 'bullet'
   gem 'pry-byebug'
   gem 'pry-rails'
   gem 'rubocop', require: false
