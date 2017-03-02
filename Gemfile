@@ -11,8 +11,6 @@ gem 'sass-rails', '~> 5.0'
 gem 'seed-fu'
 gem 'sqlite3'
 
-gem 'jbuilder', '~> 2.5'
-
 group :development, :test do
   gem 'pry-byebug'
   gem 'pry-rails'
@@ -23,9 +21,4 @@ end
 
 group :development do
   gem 'listen', '~> 3.0.5'
-  gem 'spring'
-  gem 'spring-watcher-listen', '~> 2.0.0'
-  gem 'web-console', '>= 3.3.0'
 end
-
-gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
