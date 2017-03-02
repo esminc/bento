@@ -14,7 +14,8 @@ gem 'sqlite3'
 gem 'jbuilder', '~> 2.5'
 
 group :development, :test do
-  gem 'byebug', platform: :mri
+  gem 'pry-byebug'
+  gem 'pry-rails'
   gem 'rspec-rails'
   gem 'rubocop', require: false
   gem 'slim_lint'
