@@ -14,9 +14,15 @@ gem 'sqlite3'
 group :development, :test do
   gem 'pry-byebug'
   gem 'pry-rails'
-  gem 'rspec-rails'
   gem 'rubocop', require: false
   gem 'slim_lint'
+end
+
+group :test do
+  gem 'database_rewinder'
+  gem 'factory_girl_rails'
+  gem 'ffaker'
+  gem 'rspec-rails'
 end
 
 group :development do
