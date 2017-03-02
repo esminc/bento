@@ -12,6 +12,7 @@ gem 'pg'
 gem 'puma'
 gem 'sass-rails'
 gem 'seed-fu'
+gem 'slim-rails'
 
 group :development, :test do
   gem 'bullet'
