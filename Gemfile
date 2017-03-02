@@ -17,6 +17,7 @@ group :development, :test do
   gem 'byebug', platform: :mri
   gem 'rspec-rails'
   gem 'rubocop', require: false
+  gem 'slim_lint'
 end
 
 group :development do
