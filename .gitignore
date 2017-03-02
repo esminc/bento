@@ -7,10 +7,6 @@
 # Ignore bundler config.
 /.bundle
 
-# Ignore the default SQLite database.
-/db/*.sqlite3
-/db/*.sqlite3-journal
-
 # Ignore all logfiles and tempfiles.
 /log/*
 /tmp/*
@@ -25,8 +21,6 @@
 capybara-*.html
 /log
 /tmp
-/db/*.sqlite3
-/db/*.sqlite3-journal
 /public/system
 /coverage/
 /spec/tmp
@@ -68,3 +62,5 @@ bower.json
 # Ignore Rubymine
 /.idea
 
+# Ignore database configuration
+config/database.yml
