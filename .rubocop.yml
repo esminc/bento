@@ -1,0 +1,76 @@
+AllCops:
+  Exclude:
+    - vendor/**/*
+    - db/schema.rb
+    - db/fixtures/**/*
+    - bin/**
+  DisplayCopNames: true
+  TargetRubyVersion: 2.4
+
+Rails:
+  Enabled: true
+
+Lint/AssignmentInCondition:
+  Enabled: false
+
+Metrics/AbcSize:
+  Max: 35
+
+Metrics/BlockLength:
+  Enabled: false
+
+Metrics/LineLength:
+  Max: 160
+
+Metrics/MethodLength:
+  Enabled: false
+
+Rails/HasAndBelongsToMany:
+  Enabled: false
+
+Rails/SkipsModelValidations:
+  Enabled: false
+
+Style/AlignParameters:
+  Enabled: false
+
+Style/AsciiComments:
+  Enabled: false
+
+Style/BlockComments:
+  Enabled: false
+
+Style/ClassAndModuleChildren:
+  Enabled: false
+
+Style/Documentation:
+  Enabled: false
+
+Style/FrozenStringLiteralComment:
+  Enabled: false
+
+Style/NumericLiterals:
+  MinDigits: 10
+
+Style/PercentLiteralDelimiters:
+  PreferredDelimiters:
+    '%': '{}'
+
+Style/RedundantSelf:
+  Enabled: false
+
+Style/SignalException:
+  Enabled: false
+
+Style/ExtraSpacing:
+  AllowForAlignment: true
+
+Style/TrailingCommaInArguments:
+  EnforcedStyleForMultiline: no_comma
+
+Style/TrailingCommaInLiteral:
+  EnforcedStyleForMultiline: no_comma
+
+Style/SpaceInsideHashLiteralBraces:
+  EnforcedStyle: no_space
+

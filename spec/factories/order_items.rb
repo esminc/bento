@@ -11,5 +11,7 @@
 #  updated_at    :datetime         not null
 #
 
-class OrderItem < ApplicationRecord
+FactoryGirl.define do
+  factory :order_item do
+  end
 end
