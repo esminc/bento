@@ -1,0 +1,16 @@
+language: ruby
+
+rvm:
+  - 2.4.0
+
+bundler_args: --without production
+cache: bundler
+
+before_script:
+  - bundle exec rake db:create
+  - bundle exec rake db:migrate
+
+script:
+  - bundle exec rspec
+  - bundle exec rubocop
+  - bundle exec slim-lint app/views
