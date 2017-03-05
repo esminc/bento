@@ -7,7 +7,6 @@ end
 
 gem 'rails', '5.0.1'
 
-gem 'jbuilder'
 gem 'pg'
 gem 'puma'
 gem 'sass-rails'
