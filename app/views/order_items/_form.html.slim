@@ -1,0 +1,17 @@
+= form_for(order_item) do |f|
+  - if order_item.errors.any?
+    #error_explanation
+      h2
+        = pluralize(order_item.errors.count, 'error')
+        |  prohibited this order item from being saved:
+      ul
+        - order_item.errors.full_messages.each do |message|
+          li
+            = message
+  = f.label :customer_name
+  = f.text_field :customer_name
+  = fields_for :lunchbox do |l|
+    = l.label :lunchbox
+    = l.select :id, Lunchbox.all.map{|l| [l.name, l.id] }
+  .actions
+    = f.submit

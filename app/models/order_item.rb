@@ -12,4 +12,5 @@
 #
 
 class OrderItem < ApplicationRecord
+  has_one :lunchbox
 end
