@@ -1,5 +1,5 @@
 h1
   | Orders
-  - @orders.each do |order|
-    ul
-      li= link_to order.date, new_order_order_item_path(order)
+- @orders.each do |order|
+  ul
+    li= link_to order.date, new_order_order_item_path(order)
