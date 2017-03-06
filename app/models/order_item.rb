@@ -12,5 +12,8 @@
 #
 
 class OrderItem < ApplicationRecord
-  has_one :lunchbox
+  # XXX データモデルの関係としておかしい（本当は order item has one lunchbox だと思う）けど、
+  #     やりたいことを実現するには belongs_to lunchbox にするしかない。
+  belongs_to :lunchbox
+  belongs_to :order
 end
