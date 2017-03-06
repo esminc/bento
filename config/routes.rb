@@ -12,4 +12,6 @@ Rails.application.routes.draw do
       patch :receive
     end
   end
+
+  root 'orders#index'
 end
