@@ -5,11 +5,13 @@ git_source(:github) do |repo_name|
   "https://github.com/#{repo_name}.git"
 end
 
-gem 'puma', '~> 3.0'
-gem 'rails', '~> 5.0.1'
-gem 'sass-rails', '~> 5.0'
+gem 'rails', '5.0.1'
+
+gem 'pg'
+gem 'puma'
+gem 'sass-rails'
 gem 'seed-fu'
-gem 'sqlite3'
+gem 'slim-rails'
 
 group :development, :test do
   gem 'bullet'
@@ -28,5 +30,5 @@ end
 
 group :development do
   gem 'annotate'
-  gem 'listen', '~> 3.0.5'
+  gem 'listen'
 end

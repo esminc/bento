@@ -1,0 +1,17 @@
+default: &default
+  adapter: postgresql
+  encoding: unicode
+  pool: 5
+
+development:
+  <<: *default
+  database: bento_development
+test:
+  <<: *default
+  database: bento_test
+
+production:
+  <<: *default
+  database: bento_production
+  username: bento
+  password: <%= ENV['BENTO_DATABASE_PASSWORD'] %>
