@@ -14,7 +14,6 @@ class OrderItemsController < ApplicationController
     @order = Order.find(params[:order_id])
     @order_item = @order.order_items.build(order_item_params)
     @order_item.lunchbox_id = lunchbox_params[:id]
-    binding.pry
 
     if @order_item.save
       redirect_to [@order, @order_item], notice: 'Order item was successfully created.'
