@@ -1,5 +1,7 @@
 h1
-  | Orders
+  | 注文日選択
+p
+  | お弁当を注文したい日付を選んでください。
 - @orders.each do |order|
   ul
     li= link_to order.date, new_order_order_item_path(order)
