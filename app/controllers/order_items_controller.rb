@@ -1,4 +1,8 @@
 class OrderItemsController < ApplicationController
+  def index
+    # 予約確認・受取確認
+  end
+
   def new
     @order = Order.find(params[:order_id])
     @order_item = @order.order_items.build
@@ -26,6 +30,10 @@ class OrderItemsController < ApplicationController
 
   def destroy
     # 弁当注文削除
+  end
+
+  def receive
+    # 注文を受け取る
   end
 
   private
