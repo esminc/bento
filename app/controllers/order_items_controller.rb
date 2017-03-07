@@ -1,8 +1,6 @@
 class OrderItemsController < ApplicationController
-  before_action :set_order_item, only: %i(show)
-
-  def show
-    # hogehoge
+  def index
+    # 予約確認・受取確認
   end
 
   def new
@@ -22,17 +20,29 @@ class OrderItemsController < ApplicationController
     end
   end
 
+  def edit
+    # 弁当注文編集画面
+  end
+
+  def update
+    # 弁当注文編集
+  end
+
+  def destroy
+    # 弁当注文削除
+  end
+
+  def receive
+    # 注文を受け取る
+  end
+
   private
 
-    def set_order_item
-      @order_item = OrderItem.find(params[:id])
-    end
+  def order_item_params
+    params.require(:order_item).permit(:customer_name)
+  end
 
-    def order_item_params
-      params.require(:order_item).permit(:customer_name)
-    end
-
-    def lunchbox_params
-      params.require(:lunchbox).permit(:id)
-    end
+  def lunchbox_params
+    params.require(:lunchbox).permit(:id)
+  end
 end
