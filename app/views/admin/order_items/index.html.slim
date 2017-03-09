@@ -1,1 +1,7 @@
 h1 注文確認
+
+- if @order.closed_at?
+  = closed_info(@order)
+- else
+  = form_tag admin_order_close_path(@order), method: :patch do
+    = submit_tag '注文を締め切る'
