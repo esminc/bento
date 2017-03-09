@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  root 'orders#index'
+
   namespace :admin do
     resources :orders, only: %i() do
       patch :close
@@ -11,6 +13,4 @@ Rails.application.routes.draw do
       patch :receive
     end
   end
-
-  root 'orders#index'
 end

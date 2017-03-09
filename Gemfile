@@ -7,6 +7,7 @@ end
 
 gem 'rails', '5.0.1'
 
+gem 'holiday_jp'
 gem 'pg'
 gem 'puma'
 gem 'sass-rails'
