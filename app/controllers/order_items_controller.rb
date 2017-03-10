@@ -1,6 +1,9 @@
 class OrderItemsController < ApplicationController
   def index
     # 予約確認・受取確認
+
+    @order = Order.find_by(id: params["order_id"])
+
   end
 
   def new
