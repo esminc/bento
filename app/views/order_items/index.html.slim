@@ -3,9 +3,9 @@ h1 予約確認・注文確認
 
 h1= link_to "予約する", new_order_order_item_path(@order)
 
-table
+table(border=1)
   tr
-    td.name = "-"
+    td.name(align="center") = "-"
     - Lunchbox.all.each do |lunchbox|
       td.name = lunchbox.name
     td.name = "-"
@@ -15,7 +15,7 @@ table
         td.name = item.customer_name
         - Lunchbox.all.each do |lunchbox|
           - if lunchbox.id == item.lunchbox_id
-            td.name = "✓"
+            td.name(align="center") = "✓"
           - else
             td.name = ""
 
