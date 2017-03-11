@@ -11,5 +11,6 @@
 
 FactoryGirl.define do
   factory :order do
+    date Time.zone.today
   end
 end
