@@ -7,7 +7,7 @@ table(border=1)
   tr
     td.name(align="center") = "-"
     - Lunchbox.all.each do |lunchbox|
-      td.name = lunchbox.name
+      td.name = lunchbox.name + "(#{lunchbox.price.to_s}円)"
     td.name = "-"
 
     - @order.order_items.each do |item|
