@@ -7,7 +7,7 @@ class OrderItemsMatrix
     matrix = []
 
     grouped_items = ActiveRecord::Base.connection.select_all(aggregate_sql).rows.map do |lunchbox_id, num|
-      [lunchbox_id, num.to_i] # NOTE: nilの値を0にするため
+      [lunchbox_id, num.to_i] # NOTE: 注文の入ってない弁当の数はnilになってるので0にする
     end.to_h
     lunchboxes = Lunchbox.where(id: grouped_items.keys).to_a
 
