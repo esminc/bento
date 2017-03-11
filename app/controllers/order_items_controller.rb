@@ -17,7 +17,7 @@ class OrderItemsController < ApplicationController
     @order_item.lunchbox_id = lunchbox_params[:id]
 
     if @order_item.save
-      redirect_to [@order, @order_item], notice: 'Order item was successfully created.'
+      redirect_to order_order_items_path(@order) , notice: 'Order item was successfully created.'
     else
       render :new
     end
