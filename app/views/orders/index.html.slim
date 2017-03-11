@@ -4,4 +4,4 @@ p
   | お弁当を注文したい日付を選んでください。
 - @orders.each do |order|
   ul
-    li= link_to order.date, new_order_order_item_path(order)
+    li= link_to order.date, order_order_items_path(order)
