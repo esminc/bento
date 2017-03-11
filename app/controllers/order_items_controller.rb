@@ -33,6 +33,11 @@ class OrderItemsController < ApplicationController
 
   def destroy
     # 弁当注文削除
+    order_item = OrderItem.find(params[:id]).destroy
+    if order_item
+      notice = "#{order_item.customer_name}'s' #{order_item.lunchbox.name} item was successfully deleted."
+      redirect_to order_order_items_path(order_item.order) , notice: notice
+    end
   end
 
   def receive
