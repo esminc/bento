@@ -1,5 +1,12 @@
 h1 注文確認
 
+table
+  - @matrix.each do |items|
+    tr
+      - items.each do |item|
+        td = item
+
+
 - if @order.closed_at?
   = closed_info(@order)
 - else
