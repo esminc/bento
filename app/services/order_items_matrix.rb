@@ -26,14 +26,14 @@ class OrderItemsMatrix
   # NOTE: その日の注文数を弁当毎に集計するSQL
   def aggregate_sql
     sql = <<-SQL
-    select lunchboxes.id, lunchbox_count.cnt
-    from lunchboxes left join
-      (select order_items.lunchbox_id, count(order_items.lunchbox_id) as cnt
-      from order_items join orders on order_items.order_id = orders.id
-      where orders.date = ?
-      group by order_items.lunchbox_id) as lunchbox_count
-    on lunchboxes.id = lunchbox_count.lunchbox_id
-    order by lunchboxes.id asc
+    SELECT lunchboxes.id, lunchbox_count.cnt
+    FROM lunchboxes LEFT JOIN
+      (SELECT order_items.lunchbox_id, COUNT(order_items.lunchbox_id) AS cnt
+      FROM order_items JOIN orders ON order_items.order_id = orders.id
+      WHERE orders.date = ?
+      GROUP BY order_items.lunchbox_id) AS lunchbox_count
+    ON lunchboxes.id = lunchbox_count.lunchbox_id
+    ORDER BY lunchboxes.id ASC
     SQL
     ActiveRecord::Base.send(:sanitize_sql_array, [sql, @order_date])
   end
