@@ -14,4 +14,11 @@ FactoryGirl.define do
     name 'sample弁当'
     price 400
   end
+
+  factory :good_lunchbox, class: Lunchbox do
+    id 2
+    name "good"
+    price 400
+  end
+
 end
