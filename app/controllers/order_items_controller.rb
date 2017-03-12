@@ -12,7 +12,6 @@ class OrderItemsController < ApplicationController
   def create
     @order = Order.find(params[:order_id])
     @order_item = @order.order_items.build(order_item_params)
-    @order_item.lunchbox_id = lunchbox_params[:id]
 
     if @order_item.save
       redirect_to order_order_items_path(@order) , notice: 'Order item was successfully created.'
@@ -30,7 +29,6 @@ class OrderItemsController < ApplicationController
   def update
     # 弁当注文編集
     @order_item = OrderItem.find(params[:id])
-    @order_item.lunchbox_id = lunchbox_params[:id]
     if @order_item.update(order_item_params)
       redirect_to order_order_items_path(@order_item.order)
     else
@@ -54,10 +52,7 @@ class OrderItemsController < ApplicationController
   private
 
   def order_item_params
-    params.require(:order_item).permit(:customer_name)
+    params.require(:order_item).permit(:customer_name, :lunchbox_id)
   end
 
-  def lunchbox_params
-    params.require(:lunchbox).permit(:id)
-  end
 end
