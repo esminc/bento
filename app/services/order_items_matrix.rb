@@ -14,7 +14,7 @@ class OrderItemsMatrix
     header = [''] + lunchboxes.map(&:name) << '合計'
     numbers_row = ['個数'] + grouped_items.values << grouped_items.values.sum
     amounts = grouped_items.map do |lunchbox_id, num|
-      lunchboxes[lunchbox_id - 1].price * num
+      lunchboxes.find {|lunchbox| lunchbox.id == lunchbox_id }.price * num
     end
     amounts_row = ['金額'] + amounts << amounts.sum
 
@@ -23,6 +23,7 @@ class OrderItemsMatrix
 
   private
 
+  # NOTE: その日の注文数を弁当毎に集計するSQL
   def aggregate_sql
     sql = <<-SQL
     select lunchboxes.id, lunchbox_count.cnt
