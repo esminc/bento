@@ -23,6 +23,7 @@ group :development, :test do
 end
 
 group :test do
+  gem 'capybara'
   gem 'database_rewinder'
   gem 'factory_girl_rails'
   gem 'ffaker'
