@@ -13,6 +13,6 @@
 
 FactoryGirl.define do
   factory :order_item do
-    customer_name 'hoge'
+    customer_name 'テスト'
   end
 end

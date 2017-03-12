@@ -11,7 +11,7 @@
 
 FactoryGirl.define do
   factory :lunchbox do
-    name "normal"
+    name 'sample弁当'
     price 400
   end
 end
