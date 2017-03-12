@@ -15,7 +15,7 @@ RSpec.feature "Order::OrderItems", type: :feature do
   end
 
   feature '注文のキャンセル' do
-    scenario '注文者は自分の注文を確認できる' do
+    scenario '注文者は自分の注文をキャンセルできる' do
       create(:lunchbox)
       order = create(:order)
       order_item = create(:order_item)
