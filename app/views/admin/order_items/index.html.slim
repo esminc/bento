@@ -1,9 +1,9 @@
 h1 注文確認
 
 table
-  - @matrix.each do |items|
+  - @matrix.each do |row|
     tr
-      - items.each do |item|
+      - row.each do |item|
         td = item
 
 
