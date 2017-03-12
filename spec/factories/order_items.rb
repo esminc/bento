@@ -13,5 +13,9 @@
 
 FactoryGirl.define do
   factory :order_item do
+    id 1
+    order_id 1
+    lunchbox_id 1
+    customer_name 'hoge'
   end
 end

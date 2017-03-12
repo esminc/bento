@@ -11,5 +11,7 @@
 
 FactoryGirl.define do
   factory :order do
+    date Time.zone.local(2017, 2, 1, 0, 0, 0)
+    id 1
   end
 end
