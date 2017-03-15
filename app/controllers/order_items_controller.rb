@@ -1,4 +1,7 @@
 class OrderItemsController < ApplicationController
+
+  before_action :order_close_confirmation, only: [:edit, :destroy, :new, :create]
+
   def index
     # 予約確認・受取確認
     @order = Order.find(params["order_id"])
@@ -38,8 +41,10 @@ class OrderItemsController < ApplicationController
 
   def destroy
     # 弁当注文削除
-    order_item = OrderItem.find(params[:id]).destroy
-    if order_item
+    order_item = OrderItem.find(params[:id])
+    order_close_confirmation
+
+    if order_item.destroy
       notice = "#{order_item.customer_name}'s' #{order_item.lunchbox.name} item was successfully deleted."
       redirect_to order_order_items_path(order_item.order) , notice: notice
     end
@@ -53,6 +58,17 @@ class OrderItemsController < ApplicationController
 
   def order_item_params
     params.require(:order_item).permit(:customer_name, :lunchbox_id)
+  end
+
+  def lunchbox_params
+    params.require(:lunchbox).permit(:id)
+  end
+
+  def order_close_confirmation
+    order = Order.find(params[:order_id])
+    notice = "it is too late."
+    redirect_to order_order_items_path(order) , notice: notice if order.closed_at
+    return
   end
 
 end
