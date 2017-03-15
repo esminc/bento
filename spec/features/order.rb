@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.feature 'Order::OrderItems', type: :feature do
+RSpec.feature 'Order', type: :feature do
 
   feature '注文の確認' do
     scenario '注文者は自分の注文を確認できる' do
@@ -44,14 +44,11 @@ RSpec.feature 'Order::OrderItems', type: :feature do
 
       # edit name
       click_link(order_item.customer_name)
-      expect(find_field('Customer name').value).to eq order_item.customer_name
       fill_in 'Customer name', with: new_name
 
       # change lunchbox
       expect(page).to have_select('order_item[lunchbox_id]',selected: 'sample弁当')
       select new_lunchbox_name, from: 'order_item[lunchbox_id]'
-
-      # text(order_item.customer_name)
 
       # update confirm
       click_button 'Update Order item'
