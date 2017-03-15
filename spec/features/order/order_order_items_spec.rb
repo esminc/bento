@@ -33,7 +33,7 @@ RSpec.feature "Order::OrderItems", type: :feature do
   feature '注文の修正' do
     scenario '注文者は自分の注文を修正できる' do
       lunchbox = create(:lunchbox)
-      create(:good_lunchbox)
+      create(:lunchbox, name: 'sample弁当-上')
       order = create(:order)
       order_item = create(:order_item, order: order, lunchbox: lunchbox)
       new_name = "another_name"
