@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.feature "Order::OrderItems", type: :feature do
+RSpec.feature 'Order::OrderItems', type: :feature do
 
   feature '注文の確認' do
     scenario '注文者は自分の注文を確認できる' do
@@ -21,7 +21,7 @@ RSpec.feature "Order::OrderItems", type: :feature do
 
       visit order_order_items_path(order)
       expect(page).to have_text(order_item.customer_name)
-      expect(page).to have_text("cancel")
+      expect(page).to have_text('cancel')
 
       click_link('cancel')
       expect(page).not_to have_text(order_item.customer_name)
@@ -36,9 +36,8 @@ RSpec.feature "Order::OrderItems", type: :feature do
       create(:lunchbox, name: 'sample弁当-上')
       order = create(:order)
       order_item = create(:order_item, order: order, lunchbox: lunchbox)
-      new_name = "another_name"
-      new_lunchbox_name = "sample弁当-上"
-
+      new_name = 'another_name'
+      new_lunchbox_name = 'sample弁当-上'
 
       visit order_order_items_path(order)
       expect(page).to have_text(order_item.customer_name)
@@ -46,22 +45,22 @@ RSpec.feature "Order::OrderItems", type: :feature do
       # edit name
       click_link(order_item.customer_name)
       expect(find_field('Customer name').value).to eq order_item.customer_name
-      fill_in "Customer name", with:new_name
+      fill_in 'Customer name', with: new_name
 
       # change lunchbox
-      expect(page).to have_select("order_item[lunchbox_id]",selected: "sample弁当")
-      select new_lunchbox_name, from: "order_item[lunchbox_id]"
+      expect(page).to have_select('order_item[lunchbox_id]',selected: 'sample弁当')
+      select new_lunchbox_name, from: 'order_item[lunchbox_id]'
 
       # text(order_item.customer_name)
 
       # update confirm
-      click_button "Update Order item"
+      click_button 'Update Order item'
       expect(page).not_to have_text(order_item.customer_name)
       expect(page).to have_text(new_name)
 
       # confirm new order in edit page
       click_link(new_name)
-      expect(page).to have_select("order_item[lunchbox_id]",selected: new_lunchbox_name)
+      expect(page).to have_select('order_item[lunchbox_id]',selected: new_lunchbox_name)
 
     end
   end
