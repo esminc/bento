@@ -12,7 +12,7 @@ table(border=1)
 
     - @order.order_items.each do |item|
       tr
-        td.name = item.customer_name
+        td.name = link_to item.customer_name, edit_order_order_item_path(@order,item)
         - Lunchbox.all.each do |lunchbox|
           - if lunchbox.id == item.lunchbox_id
             td.name(align="center") = "✓"

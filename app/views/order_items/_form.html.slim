@@ -10,8 +10,9 @@
             = message
   = f.label :customer_name
   = f.text_field :customer_name
-  = fields_for :lunchbox do |l|
-    = l.label :lunchbox
-    = l.select :id, Lunchbox.all.map{|l| [l.name, l.id] }
+
+  = f.label :lunchbox
+  = f.select :lunchbox_id, Lunchbox.all.map{|l| [l.name, l.id] }
+
   .actions
     = f.submit
