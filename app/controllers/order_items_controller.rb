@@ -2,6 +2,12 @@ class OrderItemsController < ApplicationController
   def index
     # 予約確認・受取確認
     @order = Order.find(params["order_id"])
+
+    if @order.closed_at?
+      render 'receive'
+    else
+      render 'index'
+    end
   end
 
   def new
