@@ -1,8 +1,11 @@
 def next_weekday_of(date)
   next_date = date.tomorrow
-  # NOTE: 平日とは、土・日・祝日いずれでもないものとする
-  return next_date if !next_date.sunday? \
-                      && !next_date.saturday? \
-                      && !HolidayJp.holiday?(next_date.to_date)
+  return next_date unless holiday?(next_date)
+
   next_weekday_of(next_date)
+end
+
+def holiday?(date)
+  # NOTE: 土日、もしくは国で定められた祝日であれば、平日扱いにはしたくない。
+  date.sunday? || date.saturday? || HolidayJp.holiday?(date.to_date)
 end
