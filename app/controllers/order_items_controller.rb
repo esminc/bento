@@ -1,7 +1,7 @@
 class OrderItemsController < ApplicationController
 
-  before_action :order_close_confirmation, only: [:destroy, :new, :create]
-  # ,:edit
+  before_action :order_close_confirmation, only: [:destroy, :new, :create, :edit]
+
   def index
     # 予約確認・受取確認
     @order = Order.find(params["order_id"])

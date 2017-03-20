@@ -56,7 +56,6 @@ RSpec.feature 'Order', type: :feature do
 
   end
 
-
   feature '注文のキャンセル' do
     scenario '注文者は自分の注文をキャンセルできる' do
       lunchbox = create(:lunchbox)
@@ -136,5 +135,3 @@ RSpec.feature 'Order', type: :feature do
   end
 
 end
-
-
