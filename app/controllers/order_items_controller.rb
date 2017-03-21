@@ -4,7 +4,7 @@ class OrderItemsController < ApplicationController
   before_action :set_order_item, only: %i(edit update destroy receive)
 
   def index
-    if @order.closed_at?
+    if @order.closed?
       render 'receive'
     else
       render 'index'

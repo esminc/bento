@@ -19,7 +19,6 @@ RSpec.feature 'Order', type: :feature do
       order = create(:order, :closed)
       visit new_order_order_item_path(order)
 
-      # 受取確認に戻される
       expect(page).to have_text('受取確認')
     end
 
@@ -27,22 +26,18 @@ RSpec.feature 'Order', type: :feature do
       visit order_order_items_path(order)
       user_name = 'sample-user'
 
-      # 未予約なことを確認
+      # NOTE: 未予約なことを確認
       expect(page).not_to have_text(user_name)
 
-      # 予約ページで情報を入力
       click_link('予約する')
       fill_in 'Customer name', with: 'customer'
       select lunchbox.name, from: 'order_item[lunchbox_id]'
 
-      # 弁当発注の確定
-      order.closed_at = Time.zone.local(2017, 2, 1)
-      order.save
+      # NOTE: 注文の閉め
+      order.update(closed_at: Time.zone.local(2017, 2, 1))
 
-      # ユーザーが自分の注文を確定しようとする
       click_button 'Create Order item'
 
-      # 受取確認に戻され、予約は確定できていない
       expect(page).not_to have_text(user_name)
       expect(page).to have_text('受取確認')
     end
@@ -81,20 +76,16 @@ RSpec.feature 'Order', type: :feature do
       visit order_order_items_path(order)
       expect(page).to have_text(order_item.customer_name)
 
-      # edit name
       click_link(order_item.customer_name)
       fill_in 'Customer name', with: new_name
 
-      # change lunchbox
       expect(page).to have_select('order_item[lunchbox_id]',selected: lunchbox.name)
       select new_lunchbox_name, from: 'order_item[lunchbox_id]'
 
-      # update confirm
       click_button 'Update Order item'
       expect(page).not_to have_text(order_item.customer_name)
       expect(page).to have_text(new_name)
 
-      # confirm new order in edit page
       click_link(new_name)
       expect(page).to have_select('order_item[lunchbox_id]',selected: new_lunchbox_name)
     end

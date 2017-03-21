@@ -23,4 +23,8 @@ class Order < ApplicationRecord
       orders.reject {|o| HolidayJp.holiday?(o.date) || o.date.wday == 6 || o.date.wday == 0 }
     end
   end
+
+  def closed?
+    closed_at?
+  end
 end
