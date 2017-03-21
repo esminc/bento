@@ -6,6 +6,9 @@ Rails.application.routes.draw do
       member do
         patch :close
       end
+      collection do
+        get :today
+      end
       resources :order_items, only: %i(index)
     end
   end
