@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.feature 'Order', type: :feature do
-  given(:lunchbox) { create(:lunchbox) }
+  given!(:lunchbox) { create(:lunchbox) }
   given(:order) { create(:order) }
 
   feature '注文の確認' do
@@ -11,6 +11,40 @@ RSpec.feature 'Order', type: :feature do
       visit order_order_items_path(order)
       expect(page).to have_text(order_item.customer_name)
       expect(page).to have_text('予約確認・注文確認')
+    end
+  end
+
+  feature '注文の新規作成' do
+    scenario 'Order が締め切られている場合、注文者は新しく注文できない' do
+      order = create(:order, :closed)
+      visit new_order_order_item_path(order)
+
+      # 受取確認に戻される
+      expect(page).to have_text('受取確認')
+    end
+
+    scenario 'Order が締め切られている場合、注文者は新しい注文を確定できない' do
+      visit order_order_items_path(order)
+      user_name = 'sample-user'
+
+      # 未予約なことを確認
+      expect(page).not_to have_text(user_name)
+
+      # 予約ページで情報を入力
+      click_link('予約する')
+      fill_in 'Customer name', with: 'customer'
+      select lunchbox.name, from: 'order_item[lunchbox_id]'
+
+      # 弁当発注の確定
+      order.closed_at = Time.zone.local(2017, 2, 1)
+      order.save
+
+      # ユーザーが自分の注文を確定しようとする
+      click_button 'Create Order item'
+
+      # 受取確認に戻され、予約は確定できていない
+      expect(page).not_to have_text(user_name)
+      expect(page).to have_text('受取確認')
     end
   end
 
@@ -24,7 +58,16 @@ RSpec.feature 'Order', type: :feature do
 
       click_link('cancel')
       expect(page).not_to have_text(order_item.customer_name)
+    end
 
+    scenario 'Order が締め切られている場合、注文者は自分の注文をキャンセルできない' do
+      order = create(:order, :closed)
+      order_item = create(:order_item, order: order, lunchbox: lunchbox)
+
+      visit order_order_items_path(order)
+
+      expect(page).to have_text(order_item.customer_name)
+      expect(page).not_to have_link('cancel')
     end
   end
 
@@ -54,6 +97,15 @@ RSpec.feature 'Order', type: :feature do
       # confirm new order in edit page
       click_link(new_name)
       expect(page).to have_select('order_item[lunchbox_id]',selected: new_lunchbox_name)
+    end
+
+    scenario 'Order が締め切られている場合、注文者は自分の注文を編集できない' do
+      order = create(:order, :closed)
+      order_item = create(:order_item, order: order, lunchbox: lunchbox)
+
+      visit order_order_items_path(order)
+
+      expect(page).not_to have_link(order_item.customer_name)
     end
   end
 
