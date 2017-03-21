@@ -1,18 +1,22 @@
 h1 受取確認
 
-/table(border=1)
-/  tr
-/    td.name(align="center") = "-"
-/    - Lunchbox.all.each do |lunchbox|
-/      td.name = lunchbox.name + "(#{lunchbox.price.to_s}円)"
-/    td.name = "-"
-/
-/    - @order.order_items.each do |item|
-/      tr
-/        td.name = link_to item.customer_name, edit_order_order_item_path(@order,item)
-/        - Lunchbox.all.each do |lunchbox|
-/          - if lunchbox.id == item.lunchbox_id
-/            td.name(align="center") = "✓"
-/          - else
-/            td.name = ""
-/        td.name = link_to "cancel", order_order_item_path(@order, item), method: :delete, data: {confirm: 'Are you certain you want to delete this?'}
+table(border=1)
+  tr
+    td.name(align="center") = "-"
+    - Lunchbox.all.each do |lunchbox|
+      td.name = lunchbox.name + "(#{lunchbox.price.to_s}円)"
+    td.name = "-"
+
+    - @order.order_items.each do |item|
+      tr
+        td.name = item.customer_name
+        - Lunchbox.all.each do |lunchbox|
+          - if lunchbox.id == item.lunchbox_id
+            td.name(align="center") = "✓"
+          - else
+            td.name = ""
+        td.name
+          - if item.received_at?
+            = '受け取り済'
+          - else
+            = link_to '受け取る', receive_order_order_item_path(@order, item), method: :patch

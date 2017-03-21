@@ -65,6 +65,10 @@ RSpec.feature 'Order', type: :feature do
 
       visit order_order_items_path(order)
       expect(page).to have_text('受取確認')
+
+      click_link '受け取る'
+
+      expect(page).to have_text('受け取り済')
     end
   end
 end
