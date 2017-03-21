@@ -7,5 +7,5 @@ end
 
 def holiday?(date)
   # NOTE: 土日、もしくは国で定められた祝日であれば、平日扱いにはしたくない。
-  date.sunday? || date.saturday? || HolidayJp.holiday?(date.to_date)
+  date.sunday? || date.saturday? || HolidayJp.holiday?(date)
 end

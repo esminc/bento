@@ -3,7 +3,7 @@ require_relative './rake_helpers'
 namespace :order do
   desc '平日分の Order レコードを作成する'
   task create: :environment do
-    today = Time.current.beginning_of_day
+    today = Time.current.beginning_of_day.to_date
     orders_from_today = Order.where('date > ?', today)
 
     new_order_date = if orders_from_today.any?
