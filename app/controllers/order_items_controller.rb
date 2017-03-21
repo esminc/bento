@@ -1,6 +1,7 @@
 class OrderItemsController < ApplicationController
 
   before_action :order_close_confirmation, only: [:destroy, :new, :create, :edit]
+  before_action :get_order_object
 
   def index
     # 予約確認・受取確認
@@ -8,12 +9,10 @@ class OrderItemsController < ApplicationController
   end
 
   def new
-    @order = Order.find(params[:order_id])
     @order_item = @order.order_items.build
   end
 
   def create
-    @order = Order.find(params[:order_id])
     @order_item = @order.order_items.build(order_item_params)
 
     if @order_item.save
@@ -25,7 +24,6 @@ class OrderItemsController < ApplicationController
 
   def edit
     # 弁当注文編集画面
-    @order = Order.find(params[:order_id])
     @order_item = OrderItem.find(params[:id])
   end
 
@@ -58,6 +56,10 @@ class OrderItemsController < ApplicationController
 
   def order_item_params
     params.require(:order_item).permit(:customer_name, :lunchbox_id)
+  end
+
+  def get_order_object
+    @order = Order.find(params[:order_id])
   end
 
   def lunchbox_params
