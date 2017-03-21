@@ -49,9 +49,9 @@ RSpec.feature 'Order', type: :feature do
 
       visit order_order_items_path(order)
       expect(page).to have_text(order_item.customer_name)
-      expect(page).to have_text('cancel')
+      expect(page).to have_text('予約取り消し')
 
-      click_link('cancel')
+      click_link('予約取り消し')
       expect(page).not_to have_text(order_item.customer_name)
     end
 
@@ -62,7 +62,7 @@ RSpec.feature 'Order', type: :feature do
       visit order_order_items_path(order)
 
       expect(page).to have_text(order_item.customer_name)
-      expect(page).not_to have_link('cancel')
+      expect(page).not_to have_link('予約取り消し')
     end
   end
 

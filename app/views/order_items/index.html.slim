@@ -18,5 +18,5 @@ table(border=1)
             td.name(align="center") = "✓"
           - else
             td.name = ""
-        td.name = link_to "cancel", order_order_item_path(@order, item), method: :delete, data: {confirm: 'Are you certain you want to delete this?'}
+        td.name = link_to "予約取り消し", order_order_item_path(@order, item), method: :delete, data: {confirm: 'この注文を取り消しますか？'}
 
