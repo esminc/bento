@@ -10,5 +10,5 @@ table
 - if @order.closed_at?
   = closed_info(@order)
 - else
-  = form_tag admin_order_close_path(@order), method: :patch do
+  = form_tag close_admin_order_path(@order), method: :patch do
     = submit_tag '注文を締め切る'
