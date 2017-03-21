@@ -1,10 +1,9 @@
 class OrderItemsController < ApplicationController
+  before_action :set_order, except: :receive
+  before_action :order_close_confirmation, only: %i(new create edit destroy)
   before_action :set_order_item, only: %i(edit update destroy receive)
 
   def index
-    # 予約確認・受取確認
-    @order = Order.find(params["order_id"])
-
     if @order.closed_at?
       render 'receive'
     else
@@ -13,12 +12,10 @@ class OrderItemsController < ApplicationController
   end
 
   def new
-    @order = Order.find(params[:order_id])
     @order_item = @order.order_items.build
   end
 
   def create
-    @order = Order.find(params[:order_id])
     @order_item = @order.order_items.build(order_item_params)
 
     if @order_item.save
@@ -29,8 +26,6 @@ class OrderItemsController < ApplicationController
   end
 
   def edit
-    # 弁当注文編集画面
-    @order = Order.find(params[:order_id])
   end
 
   def update
@@ -42,7 +37,6 @@ class OrderItemsController < ApplicationController
   end
 
   def destroy
-    # 弁当注文削除
     @order_item.destroy
     if @order_item
       notice = "#{@order_item.customer_name}'s' #{@order_item.lunchbox.name} item was successfully deleted."
@@ -60,6 +54,16 @@ class OrderItemsController < ApplicationController
 
   private
 
+  def set_order
+    @order = Order.find(params[:order_id])
+  end
+
+  def order_close_confirmation
+    notice = "it is too late."
+    redirect_to order_order_items_path(@order) , notice: notice if @order.closed_at
+    return
+  end
+
   def set_order_item
     @order_item = OrderItem.find(params[:id])
   end
@@ -68,4 +72,7 @@ class OrderItemsController < ApplicationController
     params.require(:order_item).permit(:customer_name, :lunchbox_id)
   end
 
+  def lunchbox_params
+    params.require(:lunchbox).permit(:id)
+  end
 end
