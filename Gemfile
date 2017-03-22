@@ -29,6 +29,7 @@ group :test do
   gem 'factory_girl_rails'
   gem 'ffaker'
   gem 'rspec-rails'
+  gem 'timecop'
 end
 
 group :development do
