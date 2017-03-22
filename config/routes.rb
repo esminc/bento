@@ -10,7 +10,9 @@ Rails.application.routes.draw do
 
   resources :orders, only: %i(index) do
     resources :order_items, except: %i(show) do
-      patch :receive
+      member do
+        patch :receive
+      end
     end
   end
 end
