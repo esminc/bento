@@ -8,4 +8,6 @@ html
     = csrf_meta_tags
 
   body
+    - flash.each do |key, value|
+      = value
     = yield
