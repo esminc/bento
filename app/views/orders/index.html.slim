@@ -1,7 +1,12 @@
 h1
   | 注文日選択
-p
-  | お弁当を注文したい日付を選んでください。
-- @orders.each do |order|
-  ul
-    li= link_to order.date, order_order_items_path(order)
+
+- if @orders.any?
+  p
+    | お弁当を注文したい日付を選んでください。
+  - @orders.each do |order|
+    ul
+      li= link_to order.date, order_order_items_path(order)
+- else
+  p
+    | 注文できる日がありません。管理者にお問い合わせください。
