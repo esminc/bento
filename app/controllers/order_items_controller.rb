@@ -19,7 +19,7 @@ class OrderItemsController < ApplicationController
     @order_item = @order.order_items.build(order_item_params)
 
     if @order_item.save
-      redirect_to order_order_items_path(@order) , notice: 'Order item was successfully created.'
+      redirect_to order_order_items_path(@order) , notice: '注文しました'
     else
       render :new
     end
@@ -39,7 +39,7 @@ class OrderItemsController < ApplicationController
   def destroy
     @order_item.destroy
     if @order_item
-      notice = "#{@order_item.customer_name}'s' #{@order_item.lunchbox.name} item was successfully deleted."
+      notice = "#{@order_item.customer_name} さんの #{@order_item.lunchbox.name} の注文を取り消しました。"
       redirect_to order_order_items_path(@order_item.order) , notice: notice
     end
   end
