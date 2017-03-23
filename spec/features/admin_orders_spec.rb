@@ -11,6 +11,7 @@ RSpec.feature 'Admin::Orders', type: :feature do
 
       visit admin_order_order_items_path(order)
 
+      expect(page).to have_text("#{I18n.l(order.date)}の注文一覧")
       expect(page).to have_text(lunchbox.name)
       expect(page).to have_text(2)
       expect(page).to have_text(2 * lunchbox.price)
@@ -31,7 +32,7 @@ RSpec.feature 'Admin::Orders', type: :feature do
       Timecop.freeze(order.date) do
         visit todays_order_admin_orders_path
 
-        expect(page).to have_text("注文確認(#{I18n.l(order.date)})")
+        expect(page).to have_text("今日（#{I18n.l(order.date)}）の注文一覧")
       end
     end
   end
