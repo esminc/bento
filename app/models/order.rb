@@ -10,10 +10,16 @@
 #
 
 class Order < ApplicationRecord
-  has_many :order_items
   SHOW_COUNT = 10
 
+  has_many :order_items
 
+  scope :available, -> {
+    where('date > ?', Time.current) \
+      .limit(Order::SHOW_COUNT) \
+      .order(date: :asc) \
+      .reject(&:closed?)
+  }
 
   def close(close_time = Time.current)
     update(closed_at: close_time)
