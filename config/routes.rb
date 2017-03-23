@@ -7,7 +7,7 @@ Rails.application.routes.draw do
         patch :close
       end
       collection do
-        get :today
+        get :todays_order, to: 'order_items#index'
       end
       resources :order_items, only: %i(index)
     end

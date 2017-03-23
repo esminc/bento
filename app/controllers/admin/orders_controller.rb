@@ -1,15 +1,4 @@
 class Admin::OrdersController < Admin::ApplicationController
-  def today
-    @order = Order.find_by(date: Time.current.to_date)
-
-    if @order
-      @matrix = OrderItemsMatrix.new(@order.date).generate
-      render 'admin/order_items/index'
-    else
-      redirect_to orders_path, alert: '注文が存在していません'
-    end
-  end
-
   def close
     order = Order.find(params[:id])
 

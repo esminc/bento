@@ -29,7 +29,7 @@ RSpec.feature 'Admin::Orders', type: :feature do
 
     scenario '固定のURLで今日の予約状況を見ることが出来る' do
       Timecop.freeze(order.date) do
-        visit today_admin_orders_path
+        visit todays_order_admin_orders_path
 
         expect(page).to have_text("注文確認(#{I18n.l(order.date)})")
       end
