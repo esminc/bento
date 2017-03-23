@@ -41,9 +41,7 @@ RSpec.feature 'Order', type: :feature do
       fill_in 'Customer name', with: 'customer'
       select 'sample弁当', from: 'order_item[lunchbox_id]'
 
-      # 弁当発注の確定
-      order.closed_at = Time.zone.local(2017, 2, 1)
-      order.save
+      order.close(Time.zone.local(2017, 2, 1))
 
       # ユーザーが自分の注文を確定しようとする
       click_button 'Create Order item'
