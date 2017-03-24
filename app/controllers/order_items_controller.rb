@@ -21,6 +21,7 @@ class OrderItemsController < ApplicationController
     if @order_item.save
       redirect_to order_order_items_path(@order) , notice: '注文しました'
     else
+      flash[:error] = @order_item.errors.full_messages.to_sentence
       render :new
     end
   end
@@ -32,6 +33,7 @@ class OrderItemsController < ApplicationController
     if @order_item.update(order_item_params)
       redirect_to order_order_items_path(@order_item.order)
     else
+      flash[:error] = @order_item.errors.full_messages.to_sentence
       render :edit
     end
   end
