@@ -9,7 +9,6 @@ Rails.application.routes.draw do
       collection do
         get :todays_order, to: 'order_items#index'
       end
-      resources :order_items, only: %i(index)
     end
   end
 
