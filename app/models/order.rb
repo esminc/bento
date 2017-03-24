@@ -16,7 +16,7 @@ class Order < ApplicationRecord
 
   scope :available, -> {
     where('date >= ?', Time.current) \
-      .limit(Order::SHOW_COUNT) \
+      .limit(SHOW_COUNT) \
       .order(date: :asc) \
       .reject(&:closed?)
   }
