@@ -15,7 +15,7 @@ class Order < ApplicationRecord
   has_many :order_items
 
   scope :available, -> {
-    where('date > ?', Time.current) \
+    where('date >= ?', Time.current) \
       .limit(Order::SHOW_COUNT) \
       .order(date: :asc) \
       .reject(&:closed?)
