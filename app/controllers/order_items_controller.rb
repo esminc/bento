@@ -31,7 +31,7 @@ class OrderItemsController < ApplicationController
 
   def update
     if @order_item.update(order_item_params)
-      redirect_to order_order_items_path(@order_item.order)
+      redirect_to order_order_items_path(@order_item.order), notice: '注文情報を更新しました'
     else
       flash[:error] = @order_item.errors.full_messages.to_sentence
       render :edit
