@@ -1,6 +1,11 @@
 require 'rails_helper'
 
 RSpec.feature 'Admin::Orders', type: :feature do
+
+  before :each do
+    admin_login
+  end
+
   feature '管理者機能' do
     given!(:order) { create(:order) }
     given!(:lunchbox) { create(:lunchbox) }

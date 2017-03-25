@@ -16,6 +16,7 @@ gem 'seed-fu'
 gem 'slim-rails'
 
 group :development, :test do
+  gem 'dotenv-rails'
   gem 'bullet'
   gem 'pry-byebug'
   gem 'pry-rails'
