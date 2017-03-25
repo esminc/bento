@@ -4,7 +4,6 @@ RSpec.feature 'Order', type: :feature do
   given!(:lunchbox) { create(:lunchbox) }
   given(:order) { create(:order) }
 
-  include BasicAuthHelper
   before :each do
     user_login
   end
