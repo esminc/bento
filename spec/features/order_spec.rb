@@ -19,6 +19,17 @@ RSpec.feature 'Order', type: :feature do
   end
 
   feature '注文の新規作成' do
+
+    scenario '注文者は注文者名を空のまま注文を追加できない' do
+      user_name = ''
+      visit new_order_order_item_path(order)
+      fill_in 'Customer name', with: user_name
+      select lunchbox.name, from: 'order_item[lunchbox_id]'
+      click_button 'Create Order item'
+
+      expect(page).to have_text("New Order Item")
+    end
+
     scenario 'Order が締め切られている場合、注文者は新しく注文できない' do
       order = create(:order, :closed)
       visit new_order_order_item_path(order)
