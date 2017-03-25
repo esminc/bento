@@ -10,4 +10,5 @@ html
   body
     - flash.each do |key, value|
       = value
-    = yield
+    .container
+      = yield

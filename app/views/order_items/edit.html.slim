@@ -1,5 +1,9 @@
 h1
-  | Edit Order Item
+  | 注文内容の更新
   -# TODO パーシャルで直接インスタンス変数みたくない
 = render 'form'
-= link_to 'Back', orders_path
+
+nav
+  ul.nav.nav-pills.nav-stacked
+    li = link_to '注文日選択画面へもどる', orders_path
+    li = link_to "#{@order.date} の予約一覧へもどる", order_order_items_path(@order)

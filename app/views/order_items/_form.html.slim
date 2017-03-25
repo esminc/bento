@@ -1,9 +1,11 @@
 = form_for([@order, @order_item]) do |f|
-  = f.label :customer_name
-  = f.text_field :customer_name
+  fieldset
+    .form-group
+      = f.label :customer_name
+      = f.text_field :customer_name, class: 'form-control'
 
-  = f.label :lunchbox
-  = f.select :lunchbox_id, Lunchbox.all.map{|l| [l.name, l.id] }
+    .form-group
+      = f.label :lunchbox
+      = f.select :lunchbox_id, Lunchbox.all.map{|l| [l.name, l.id] }, {}, {class: 'form-control'}
 
-  .actions
-    = f.submit
+    = f.button '注文を確定する', class: 'btn btn-primary'
