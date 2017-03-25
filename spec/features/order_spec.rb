@@ -33,8 +33,7 @@ RSpec.feature 'Order', type: :feature do
       fill_in 'Customer name', with: 'customer'
       select lunchbox.name, from: 'order_item[lunchbox_id]'
 
-      # NOTE: 注文の閉め
-      order.update(closed_at: Time.zone.local(2017, 2, 1))
+      order.close(Time.zone.local(2017, 2, 1))
 
       click_button 'Create Order item'
 

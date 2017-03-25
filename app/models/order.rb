@@ -24,6 +24,10 @@ class Order < ApplicationRecord
     end
   end
 
+  def close(close_time = Time.current)
+    update(closed_at: close_time)
+  end
+
   def closed?
     closed_at?
   end

@@ -3,8 +3,12 @@ Rails.application.routes.draw do
 
   namespace :admin do
     resources :orders, only: %i() do
-      patch :close
-      resources :order_items, only: %i(index)
+      member do
+        patch :close
+      end
+      collection do
+        get :todays_order, to: 'order_items#index'
+      end
     end
   end
 
