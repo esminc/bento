@@ -4,8 +4,16 @@ ja:
     formats:
       default: "%Y/%m/%d %H:%M:%S"
   date:
+    abbr_day_names:
+    - 日
+    - 月
+    - 火
+    - 水
+    - 木
+    - 金
+    - 土
     formats:
-      default: "%Y/%m/%d"
+      default: "%Y/%m/%d(%a)"
   errors:
     format: "%{attribute}%{message}"
     messages:

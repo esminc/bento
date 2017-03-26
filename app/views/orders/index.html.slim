@@ -4,7 +4,7 @@
   -# TODO インタフェースとしてはイケてないけどとりあえずやりたいことはこういうこと
   p
     | 本日の注文は締め切りました。受け取りチェックをするには以下のリンクをクリックしてください。
-  = link_to @today_order.date, order_order_items_path(@today_order)
+  = link_to l(@today_order.date), order_order_items_path(@today_order)
 
 h2
   | お弁当を注文する
@@ -14,7 +14,7 @@ h2
     | 注文したい日付を選んでください。
   - @orders.each do |order|
     ul
-      li= link_to order.date, order_order_items_path(order)
+      li= link_to l(order.date), order_order_items_path(order)
 - else
   p
     | 注文できる日がありません。管理者にお問い合わせください。
