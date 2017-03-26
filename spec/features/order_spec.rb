@@ -14,7 +14,7 @@ RSpec.feature 'Order', type: :feature do
 
       visit order_order_items_path(order)
       expect(page).to have_text(order_item.customer_name)
-      expect(page).to have_text('2017/02/01の注文一覧')
+      expect(page).to have_text('2017/02/01(水)の注文一覧')
     end
   end
 
