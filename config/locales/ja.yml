@@ -6,8 +6,3 @@ ja:
   date:
     formats:
       default: "%Y/%m/%d"
-  support:
-    array:
-      words_connector: ' , '
-      two_words_connector: ' , '
-      last_word_connector: ', '
