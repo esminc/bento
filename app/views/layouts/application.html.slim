@@ -8,7 +8,14 @@ html
     = csrf_meta_tags
 
   body
-    - flash.each do |key, value|
-      = value
+    - messages = flash.to_hash.slice(*%w(notice alert))
+    - if messages.any?
+      .container
+        .flash-message
+          - messages.each do |type, message|
+            .alert.alert-dismissible.fade.in(class="#{bootstrap_alert_class(type)}")
+              = message
+              button.close(data-dismiss='alert')
+                span(aria-hidden='true') &times;
     .container
       = yield
