@@ -1,14 +1,15 @@
-h1 = admin_order_items_title(@order.date)
+h1 = order_items_title(@order.date)
 
-table
+table.table.table-default
   - @matrix.each do |row|
     tr
       - row.each do |item|
-        td = item
+        td.text-right = item
 
 
 - if @order.closed_at?
-  = closed_info(@order)
+  p
+    = closed_info(@order)
 - else
   = form_tag close_admin_order_path(@order), method: :patch do
-    = submit_tag '注文を締め切る'
+    = submit_tag '注文を締め切る', class: 'btn btn-primary btn-lg'

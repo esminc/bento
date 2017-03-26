@@ -1,21 +1,27 @@
-h1 予約確認・注文確認
+h1 = order_items_title(@order.date)
 
-h1= link_to "予約する", new_order_order_item_path(@order)
+table.table.table-hover
+  thead
+    tr
+      th.col-xs-1.text-center = '-'
+      - Lunchbox.all.each do |lunchbox|
+        th = "#{lunchbox.name} (#{lunchbox.price}円)"
+      th.text-center = '-'
 
-table(border=1)
-  tr
-    td.name(align="center") = "-"
-    - Lunchbox.all.each do |lunchbox|
-      td.name = lunchbox.name + "(#{lunchbox.price.to_s}円)"
-    td.name = "-"
-
+  tbody
     - @order.order_items.each do |item|
       tr
-        td.name = link_to item.customer_name, edit_order_order_item_path(@order,item)
+        th = link_to item.customer_name, edit_order_order_item_path(@order, item)
         - Lunchbox.all.each do |lunchbox|
-          - if lunchbox.id == item.lunchbox_id
-            td.name(align="center") = "✓"
-          - else
-            td.name = ""
-        td.name = link_to '予約取り消し', order_order_item_path(@order, item), method: :delete, data: {confirm: 'この注文を取り消しますか？'}
+          td
+            - if lunchbox.id == item.lunchbox_id
+              .text-center = '✓'
+        td= link_to '予約取り消し', order_order_item_path(@order, item), \
+          method: :delete, class: 'btn btn-danger', \
+          data: {confirm: 'Are you certain you want to delete this?'}
 
+= link_to "#{l(@order.date)} のお弁当を予約する", new_order_order_item_path(@order), class: 'btn btn-primary btn-lg'
+
+nav
+  ul.nav.nav-pills.nav-stacked
+    li = link_to '注文日選択画面へもどる', orders_path

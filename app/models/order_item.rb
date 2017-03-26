@@ -16,4 +16,6 @@ class OrderItem < ApplicationRecord
   #     やりたいことを実現するには belongs_to lunchbox にするしかない。
   belongs_to :lunchbox
   belongs_to :order
+
+  validates :customer_name, presence: true
 end

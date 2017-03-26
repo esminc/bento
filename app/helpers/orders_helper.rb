@@ -3,7 +3,7 @@ module OrdersHelper
     "注文締め切り時間: #{l(order.closed_at)}"
   end
 
-  def admin_order_items_title(date)
+  def order_items_title(date)
     if date == Time.current.to_date
       "今日（#{l(date)}）の注文一覧"
     else

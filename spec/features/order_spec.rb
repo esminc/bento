@@ -14,7 +14,7 @@ RSpec.feature 'Order', type: :feature do
 
       visit order_order_items_path(order)
       expect(page).to have_text(order_item.customer_name)
-      expect(page).to have_text('予約確認・注文確認')
+      expect(page).to have_text('2017/02/01(水)の注文一覧')
     end
   end
 
@@ -41,8 +41,8 @@ RSpec.feature 'Order', type: :feature do
 
       order.close(Time.zone.local(2017, 2, 1))
 
-      click_button '予約する'
-      # インデックスに戻され、予約は確定できていない
+      click_button '注文を確定する'
+
       expect(page).not_to have_text(user_name)
       expect(page).to have_text('受取確認')
 
@@ -60,7 +60,7 @@ RSpec.feature 'Order', type: :feature do
       fill_in '名前', with: user_name
       select lunchbox.name, from: 'order_item[lunchbox_id]'
 
-      click_button '予約する'
+      click_button '注文を確定する'
 
       # インデックスに戻る
       expect(page).to have_text(user_name)
@@ -113,7 +113,8 @@ RSpec.feature 'Order', type: :feature do
       expect(page).to have_select('order_item[lunchbox_id]',selected: lunchbox.name)
       select new_lunchbox_name, from: 'order_item[lunchbox_id]'
 
-      click_button '更新する'
+      click_button '注文を確定する'
+
       expect(page).not_to have_text(order_item.customer_name)
       expect(page).to have_text(new_name)
 
