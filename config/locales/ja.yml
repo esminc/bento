@@ -6,8 +6,16 @@ ja:
   date:
     formats:
       default: "%Y/%m/%d"
-  support:
-    array:
-      words_connector: ' , '
-      two_words_connector: ' , '
-      last_word_connector: ', '
+  errors:
+    format: "%{attribute}%{message}"
+    messages:
+      blank: を入力してください
+      empty: を入力してください
+      inclusion: は一覧にありません
+      invalid: は不正な値です
+      model_invalid: "バリデーションに失敗しました: %{errors}"
+      not_a_number: は数値で入力してください
+      not_an_integer: は整数で入力してください
+      required: を入力してください
+      too_long: は%{count}文字以内で入力してください
+      wrong_length: は%{count}文字で入力してください

@@ -1,22 +1,27 @@
 h1 受取確認
 
-table(border=1)
-  tr
-    td.name(align="center") = "-"
-    - Lunchbox.all.each do |lunchbox|
-      td.name = lunchbox.name + "(#{lunchbox.price.to_s}円)"
-    td.name = "-"
+table.table.table-hover
+  thead
+    tr
+      th.col-xs-1.text-center = '-'
+      - Lunchbox.all.each do |lunchbox|
+        th = "#{lunchbox.name} (#{lunchbox.price}円)"
+      th.text-center = '-'
 
+  tbody
     - @order.order_items.each do |item|
-      tr
-        td.name = item.customer_name
+      tr class=('info' if item.received_at?)
+        th = item.customer_name
         - Lunchbox.all.each do |lunchbox|
-          - if lunchbox.id == item.lunchbox_id
-            td.name(align="center") = "✓"
-          - else
-            td.name = ""
-        td.name
+          td
+            - if lunchbox.id == item.lunchbox_id
+              .text-center = '✓'
+        td
           - if item.received_at?
-            = '受け取り済'
+            | 受け取り済
           - else
-            = link_to '受け取る', receive_order_order_item_path(@order, item), method: :patch
+            = link_to '受け取る', receive_order_order_item_path(@order, item), method: :patch, class: 'btn btn-primary'
+
+nav
+  ul.nav.nav-pills.nav-stacked
+    li = link_to '注文日選択画面へもどる', orders_path

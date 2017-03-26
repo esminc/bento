@@ -41,8 +41,8 @@ RSpec.feature 'Order', type: :feature do
 
       order.close(Time.zone.local(2017, 2, 1))
 
-      click_button 'Create Order item'
-      # インデックスに戻され、予約は確定できていない
+      click_button '注文を確定する'
+
       expect(page).not_to have_text(user_name)
       expect(page).to have_text('受取確認')
 
@@ -60,7 +60,7 @@ RSpec.feature 'Order', type: :feature do
       fill_in 'Customer name', with: user_name
       select lunchbox.name, from: 'order_item[lunchbox_id]'
 
-      click_button 'Create Order item'
+      click_button '注文を確定する'
 
       # インデックスに戻る
       expect(page).to have_text(user_name)
@@ -113,7 +113,7 @@ RSpec.feature 'Order', type: :feature do
       expect(page).to have_select('order_item[lunchbox_id]',selected: lunchbox.name)
       select new_lunchbox_name, from: 'order_item[lunchbox_id]'
 
-      click_button 'Update Order item'
+      click_button '注文を確定する'
       expect(page).not_to have_text(order_item.customer_name)
       expect(page).to have_text(new_name)
 
