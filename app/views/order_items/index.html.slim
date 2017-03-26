@@ -16,7 +16,9 @@ table.table.table-hover
           td
             - if lunchbox.id == item.lunchbox_id
               .text-center = '✓'
-        td = link_to '予約取り消し', order_order_item_path(@order, item), method: :delete, data: {confirm: 'Are you certain you want to delete this?'}
+        td= link_to '予約取り消し', order_order_item_path(@order, item), \
+          method: :delete, class: 'btn btn-danger', \
+          data: {confirm: 'Are you certain you want to delete this?'}
 
 -# TODO 他の PR で i18n の年月日表示をセットアップしてるので、それがマージされたら使う
 = link_to "#{@order.date} 分のお弁当を予約する", new_order_order_item_path(@order), class: 'btn btn-primary btn-lg'
