@@ -1,5 +1,15 @@
 ---
 ja:
+  activerecord:
+    attributes:
+      order_item:
+        customer_name: 名前
+        lunchbox: 弁当
+  helpers:
+    submit:
+      order_item:
+        create: 予約する
+        update: 更新する
   time:
     formats:
       default: "%Y/%m/%d %H:%M:%S"

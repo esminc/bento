@@ -36,12 +36,12 @@ RSpec.feature 'Order', type: :feature do
       expect(page).not_to have_text(user_name)
 
       click_link('予約する')
-      fill_in 'Customer name', with: 'customer'
+      fill_in '名前', with: 'customer'
       select lunchbox.name, from: 'order_item[lunchbox_id]'
 
       order.close(Time.zone.local(2017, 2, 1))
 
-      click_button 'Create Order item'
+      click_button '予約する'
       # インデックスに戻され、予約は確定できていない
       expect(page).not_to have_text(user_name)
       expect(page).to have_text('受取確認')
@@ -57,10 +57,10 @@ RSpec.feature 'Order', type: :feature do
       expect(page).not_to have_text(user_name)
 
       click_link('予約する')
-      fill_in 'Customer name', with: user_name
+      fill_in '名前', with: user_name
       select lunchbox.name, from: 'order_item[lunchbox_id]'
 
-      click_button 'Create Order item'
+      click_button '予約する'
 
       # インデックスに戻る
       expect(page).to have_text(user_name)
@@ -108,12 +108,12 @@ RSpec.feature 'Order', type: :feature do
       expect(page).to have_text(order_item.customer_name)
 
       click_link(order_item.customer_name)
-      fill_in 'Customer name', with: new_name
+      fill_in '名前', with: new_name
 
       expect(page).to have_select('order_item[lunchbox_id]',selected: lunchbox.name)
       select new_lunchbox_name, from: 'order_item[lunchbox_id]'
 
-      click_button 'Update Order item'
+      click_button '更新する'
       expect(page).not_to have_text(order_item.customer_name)
       expect(page).to have_text(new_name)
 
