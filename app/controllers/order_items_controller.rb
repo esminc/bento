@@ -4,6 +4,7 @@ class OrderItemsController < ApplicationController
   before_action :set_order_item, only: %i(edit update destroy receive)
 
   def index
+    @lunchboxes = Lunchbox.decorate
     if @order.closed?
       render 'receive'
     else

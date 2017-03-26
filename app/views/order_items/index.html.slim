@@ -4,15 +4,15 @@ table.table.table-hover
   thead
     tr
       th.col-xs-1.text-center = '-'
-      - Lunchbox.all.each do |lunchbox|
-        th = "#{lunchbox.name} (#{lunchbox.price}円)"
+      - @lunchboxes.each do |lunchbox|
+        th = lunchbox.price_tag
       th.text-center = '-'
 
   tbody
     - @order.order_items.each do |item|
       tr
         th = link_to item.customer_name, edit_order_order_item_path(@order, item)
-        - Lunchbox.all.each do |lunchbox|
+        - @lunchboxes.each do |lunchbox|
           td
             - if lunchbox.id == item.lunchbox_id
               .text-center = '✓'
