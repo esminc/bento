@@ -1,3 +1,10 @@
+- if @order_item.errors.any?
+  - @order_item.errors.full_messages.each do |message|
+    .alert.alert-danger.alert-dismissible.fade.in
+      = message
+      button.close(data-dismiss='alert')
+        span(aria-hidden='true') &times;
+
 = form_for([@order, @order_item]) do |f|
   fieldset
     .form-group
