@@ -19,7 +19,7 @@ class OrderItemsController < ApplicationController
     @order_item = @order.order_items.build(order_item_params)
 
     if @order_item.save
-      redirect_to order_order_items_path(@order) , notice: '注文しました'
+      redirect_to order_order_items_path(@order), notice: '注文しました'
     else
       flash[:error] = @order_item.errors.full_messages.to_sentence
       render :new
