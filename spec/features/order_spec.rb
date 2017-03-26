@@ -19,6 +19,7 @@ RSpec.feature 'Order', type: :feature do
   end
 
   feature '注文の新規作成' do
+
     scenario 'Order が締め切られている場合、注文者は新しく注文できない' do
       order = create(:order, :closed)
       visit new_order_order_item_path(order)
@@ -27,8 +28,9 @@ RSpec.feature 'Order', type: :feature do
     end
 
     scenario 'Order が締め切られている場合、注文者は新しい注文を確定できない' do
-      visit order_order_items_path(order)
       user_name = 'sample-user'
+
+      visit order_order_items_path(order)
 
       # NOTE: 未予約なことを確認
       expect(page).not_to have_text(user_name)
@@ -40,9 +42,31 @@ RSpec.feature 'Order', type: :feature do
       order.close(Time.zone.local(2017, 2, 1))
 
       click_button 'Create Order item'
-
+      # インデックスに戻され、予約は確定できていない
       expect(page).not_to have_text(user_name)
       expect(page).to have_text('受取確認')
+
+    end
+
+    scenario '注文者が新しく注文する' do
+
+      visit order_order_items_path(order)
+      user_name = 'sample-user'
+
+      # NOTE: 未予約なことを確認
+      expect(page).not_to have_text(user_name)
+
+      click_link('予約する')
+      fill_in 'Customer name', with: user_name
+      select lunchbox.name, from: 'order_item[lunchbox_id]'
+
+      click_button 'Create Order item'
+
+      # インデックスに戻る
+      expect(page).to have_text(user_name)
+      expect(page).to have_text('予約する')
+      expect(page).to have_text('注文しました')
+
     end
   end
 
@@ -55,7 +79,8 @@ RSpec.feature 'Order', type: :feature do
       expect(page).to have_text('予約取り消し')
 
       click_link('予約取り消し')
-      expect(page).not_to have_text(order_item.customer_name)
+      expect(page).not_to have_text('予約取り消し')
+      expect(page).to have_text("#{order_item.customer_name} さんの #{order_item.lunchbox.name} の注文を取り消しました。")
     end
 
     scenario 'Order が締め切られている場合、注文者は自分の注文をキャンセルできない' do
@@ -66,8 +91,11 @@ RSpec.feature 'Order', type: :feature do
 
       expect(page).to have_text(order_item.customer_name)
       expect(page).not_to have_link('予約取り消し')
+      expect(page).not_to have_text("#{order_item.customer_name}'s' #{order_item.lunchbox.name} item was successfully deleted.")
     end
+
   end
+
 
   feature '注文の修正' do
     scenario '注文者は自分の注文を修正できる' do
@@ -101,6 +129,7 @@ RSpec.feature 'Order', type: :feature do
 
       expect(page).not_to have_link(order_item.customer_name)
     end
+
   end
 
   feature '注文の受取' do
