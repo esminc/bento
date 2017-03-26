@@ -77,6 +77,8 @@ GEM
     factory_girl_rails (4.8.0)
       factory_girl (~> 4.8.0)
       railties (>= 3.0.0)
+    faraday (0.11.0)
+      multipart-post (>= 1.2, < 3)
     ffaker (2.5.0)
     ffi (1.9.18)
     globalid (0.3.7)
@@ -101,6 +103,7 @@ GEM
     mime-types-data (3.2016.0521)
     mini_portile2 (2.1.0)
     minitest (5.10.1)
+    multipart-post (2.0.0)
     nio4r (1.2.1)
     nokogiri (1.7.1)
       mini_portile2 (~> 2.1.0)
@@ -235,6 +238,7 @@ DEPENDENCIES
   database_rewinder
   dotenv-rails
   factory_girl_rails
+  faraday
   ffaker
   holiday_jp
   jquery-rails
@@ -253,5 +257,9 @@ DEPENDENCIES
   slim_lint
   timecop
   turbolinks
+
+RUBY VERSION
+   ruby 2.4.0p0
+
 BUNDLED WITH
    1.14.6
