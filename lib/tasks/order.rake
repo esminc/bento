@@ -15,9 +15,11 @@ namespace :order do
                        next_weekday_of(today)
                      end
 
-    Order.transaction do
+    begin
       order = Order.create!(date: new_order_date)
       Idobata.post "#{I18n.l(order.date)} の Order レコードが正常に作成されました"
+    rescue => e
+      Idobata.post e.message
     end
   end
 end
