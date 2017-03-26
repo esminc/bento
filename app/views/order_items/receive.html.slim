@@ -18,7 +18,7 @@ table.table.table-hover
               .text-center = '✓'
         td
           - if item.received_at?
-            | 受け取り済み
+            | 受け取り済
           - else
             = link_to '受け取る', receive_order_order_item_path(@order, item), method: :patch, class: 'btn btn-primary'
 
