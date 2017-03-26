@@ -60,7 +60,7 @@ RSpec.feature 'Order', type: :feature do
       fill_in 'Customer name', with: user_name
       select lunchbox.name, from: 'order_item[lunchbox_id]'
 
-      click_button 'Create Order item'
+      click_button '注文を確定する'
 
       # インデックスに戻る
       expect(page).to have_text(user_name)
