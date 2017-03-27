@@ -130,7 +130,7 @@ RSpec.feature 'Order', type: :feature do
     given(:order) { create(:order, :closed) }
 
     scenario '注文者は自分の注文した弁当を受け取ったことをシステムに知らせることが出来る' do
-      order_items = create(:order_item, order: order, lunchbox: lunchbox)
+      create(:order_item, order: order, lunchbox: lunchbox)
 
       visit order_order_items_path(order)
       expect(page).to have_text('受取確認')
