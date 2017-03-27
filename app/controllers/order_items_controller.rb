@@ -26,8 +26,7 @@ class OrderItemsController < ApplicationController
     end
   end
 
-  def edit
-  end
+  def edit; end
 
   def update
     if @order_item.update(order_item_params)
