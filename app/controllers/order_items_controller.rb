@@ -40,15 +40,15 @@ class OrderItemsController < ApplicationController
     @order_item.destroy
     if @order_item
       notice = "#{@order_item.customer_name} さんの #{@order_item.lunchbox.name} の注文を取り消しました。"
-      redirect_to order_order_items_path(@order_item.order) , notice: notice
+      redirect_to order_order_items_path(@order_item.order), notice: notice
     end
   end
 
   def receive
     if @order_item.update(received_at: Time.current)
-      redirect_to order_order_items_path(@order_item.order) , notice: '注文した弁当を受け取りました'
+      redirect_to order_order_items_path(@order_item.order), notice: '注文した弁当を受け取りました'
     else
-      redirect_to order_order_items_path(@order_item.order) , alert: '予期せぬエラーが発生しました'
+      redirect_to order_order_items_path(@order_item.order), alert: '予期せぬエラーが発生しました'
     end
   end
 
