@@ -20,8 +20,8 @@ gem 'slim-rails'
 gem 'turbolinks'
 
 group :development, :test do
-  gem 'dotenv-rails'
   gem 'bullet'
+  gem 'dotenv-rails'
   gem 'pry-byebug'
   gem 'pry-rails'
   gem 'rubocop', require: false
