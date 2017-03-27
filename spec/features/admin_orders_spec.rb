@@ -1,7 +1,6 @@
 require 'rails_helper'
 
 RSpec.feature 'Admin::Orders', type: :feature do
-
   before :each do
     admin_login
   end

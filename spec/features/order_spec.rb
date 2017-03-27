@@ -19,7 +19,6 @@ RSpec.feature 'Order', type: :feature do
   end
 
   feature '注文の新規作成' do
-
     scenario 'Order が締め切られている場合、注文者は新しく注文できない' do
       order = create(:order, :closed)
       visit new_order_order_item_path(order)
@@ -46,11 +45,9 @@ RSpec.feature 'Order', type: :feature do
       expect(page).not_to have_text(user_name)
       expect(page).to have_text('注文受付が締め切られたため注文できません')
       expect(page).to have_text('受取確認')
-
     end
 
     scenario '注文者が新しく注文する' do
-
       visit order_order_items_path(order)
       user_name = 'sample-user'
 
@@ -67,7 +64,6 @@ RSpec.feature 'Order', type: :feature do
       expect(page).to have_text(user_name)
       expect(page).to have_text('予約する')
       expect(page).to have_text('注文しました')
-
     end
   end
 
@@ -93,9 +89,7 @@ RSpec.feature 'Order', type: :feature do
       expect(page).to have_text(order_item.customer_name)
       expect(page).not_to have_link('予約取り消し')
     end
-
   end
-
 
   feature '注文の修正' do
     scenario '注文者は自分の注文を修正できる' do
@@ -130,7 +124,6 @@ RSpec.feature 'Order', type: :feature do
 
       expect(page).not_to have_link(order_item.customer_name)
     end
-
   end
 
   feature '注文の受取' do
