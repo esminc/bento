@@ -1,5 +1,4 @@
 module BasicAuthHelper
-
   def user_login
     user_name = ENV['USER_ID']
     password = ENV['USER_PASS']
@@ -17,5 +16,4 @@ module BasicAuthHelper
     credentials = basic.encode_credentials(user_name, password)
     page.driver.header('Authorization', credentials)
   end
-
 end
