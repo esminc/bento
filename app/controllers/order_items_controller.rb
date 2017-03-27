@@ -60,8 +60,7 @@ class OrderItemsController < ApplicationController
   end
 
   def order_close_confirmation
-    notice = "it is too late."
-    redirect_to order_order_items_path(@order) , notice: notice if @order.closed_at
+    redirect_to order_order_items_path(@order) , notice: '既に弁当の発注が行われています' if @order.closed_at
     return
   end
 

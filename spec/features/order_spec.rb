@@ -44,6 +44,7 @@ RSpec.feature 'Order', type: :feature do
       click_button '注文を確定する'
 
       expect(page).not_to have_text(user_name)
+      expect(page).to have_text('既に弁当の発注が行われています')
       expect(page).to have_text('受取確認')
 
     end
@@ -91,7 +92,6 @@ RSpec.feature 'Order', type: :feature do
 
       expect(page).to have_text(order_item.customer_name)
       expect(page).not_to have_link('予約取り消し')
-      expect(page).not_to have_text("#{order_item.customer_name}'s' #{order_item.lunchbox.name} item was successfully deleted.")
     end
 
   end
