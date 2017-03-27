@@ -37,10 +37,11 @@ class OrderItemsController < ApplicationController
   end
 
   def destroy
-    @order_item.destroy
-    if @order_item
+    if @order_item.destroy
       notice = "#{@order_item.customer_name} さんの #{@order_item.lunchbox.name} の注文を取り消しました。"
       redirect_to order_order_items_path(@order_item.order), notice: notice
+    else
+      redirect_to order_order_items_path(@order_item.order), alert: '予期せぬエラーが発生しました'
     end
   end
 
