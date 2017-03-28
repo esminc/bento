@@ -36,7 +36,7 @@ RSpec.feature 'Order', type: :feature do
       expect(page).not_to have_text(user_name)
 
       click_link('予約する')
-      fill_in 'Customer name', with: 'customer'
+      fill_in '注文者名', with: 'customer'
       select lunchbox.name, from: 'order_item[lunchbox_id]'
 
       order.close(Time.zone.local(2017, 2, 1))
@@ -44,6 +44,7 @@ RSpec.feature 'Order', type: :feature do
       click_button '注文を確定する'
 
       expect(page).not_to have_text(user_name)
+      expect(page).to have_text('注文受付が締め切られたため注文できません')
       expect(page).to have_text('受取確認')
 
     end
@@ -57,7 +58,7 @@ RSpec.feature 'Order', type: :feature do
       expect(page).not_to have_text(user_name)
 
       click_link('予約する')
-      fill_in 'Customer name', with: user_name
+      fill_in '注文者名', with: user_name
       select lunchbox.name, from: 'order_item[lunchbox_id]'
 
       click_button '注文を確定する'
@@ -91,7 +92,6 @@ RSpec.feature 'Order', type: :feature do
 
       expect(page).to have_text(order_item.customer_name)
       expect(page).not_to have_link('予約取り消し')
-      expect(page).not_to have_text("#{order_item.customer_name}'s' #{order_item.lunchbox.name} item was successfully deleted.")
     end
 
   end
@@ -99,26 +99,27 @@ RSpec.feature 'Order', type: :feature do
 
   feature '注文の修正' do
     scenario '注文者は自分の注文を修正できる' do
-      create(:lunchbox, name: 'sample弁当-上')
+      other_lunchbox = create(:lunchbox, name: 'sample弁当-上')
       order_item = create(:order_item, order: order, lunchbox: lunchbox)
       new_name = 'another_name'
-      new_lunchbox_name = 'sample弁当-上'
+      new_lunchbox_tag = "#{other_lunchbox.name} (#{other_lunchbox.price}円)"
 
       visit order_order_items_path(order)
       expect(page).to have_text(order_item.customer_name)
 
       click_link(order_item.customer_name)
-      fill_in 'Customer name', with: new_name
+      fill_in '注文者名', with: new_name
 
-      expect(page).to have_select('order_item[lunchbox_id]',selected: lunchbox.name)
-      select new_lunchbox_name, from: 'order_item[lunchbox_id]'
+      expect(page).to have_select('order_item[lunchbox_id]', selected: "#{lunchbox.name} (#{lunchbox.price}円)")
+      select new_lunchbox_tag, from: 'order_item[lunchbox_id]'
 
       click_button '注文を確定する'
+
       expect(page).not_to have_text(order_item.customer_name)
       expect(page).to have_text(new_name)
 
       click_link(new_name)
-      expect(page).to have_select('order_item[lunchbox_id]',selected: new_lunchbox_name)
+      expect(page).to have_select('order_item[lunchbox_id]', selected: new_lunchbox_tag)
     end
 
     scenario 'Order が締め切られている場合、注文者は自分の注文を編集できない' do

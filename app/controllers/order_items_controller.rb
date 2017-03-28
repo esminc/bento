@@ -4,6 +4,7 @@ class OrderItemsController < ApplicationController
   before_action :set_order_item, only: %i(edit update destroy receive)
 
   def index
+    @lunchboxes = Lunchbox.all
     if @order.closed?
       render 'receive'
     else
@@ -59,8 +60,7 @@ class OrderItemsController < ApplicationController
   end
 
   def order_close_confirmation
-    notice = "it is too late."
-    redirect_to order_order_items_path(@order) , notice: notice if @order.closed_at
+    redirect_to order_order_items_path(@order) , notice: '注文受付が締め切られたため注文できません' if @order.closed?
     return
   end
 

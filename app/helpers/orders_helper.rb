@@ -1,6 +1,6 @@
 module OrdersHelper
   def closed_info(order)
-    "注文締め切り時間: #{l(order.closed_at)}"
+    "#{Order.human_attribute_name(:closed_at)}: #{l(order.closed_at)}"
   end
 
   def order_items_title(date)

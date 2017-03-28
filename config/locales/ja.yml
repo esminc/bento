@@ -1,5 +1,12 @@
 ---
 ja:
+  activerecord:
+    attributes:
+      order:
+        closed_at: 注文締め切り時間
+      order_item:
+        customer_name: 注文者名
+        lunchbox: 弁当
   time:
     formats:
       default: "%Y/%m/%d %H:%M:%S"

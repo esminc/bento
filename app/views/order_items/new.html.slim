@@ -1,7 +1,6 @@
 h1
-  | New Order Item
-  -# TODO パーシャルで直接インスタンス変数みたくない
-= render 'form'
+  | 注文予約
+= render partial: 'form', locals: {order: @order, order_item: @order_item}
 
 nav
   ul.nav.nav-pills.nav-stacked

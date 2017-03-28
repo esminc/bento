@@ -5,7 +5,7 @@
       button.close(data-dismiss='alert')
         span(aria-hidden='true') &times;
 
-= form_for([@order, @order_item]) do |f|
+= form_for([order, order_item]) do |f|
   fieldset
     .form-group
       = f.label :customer_name
@@ -13,6 +13,6 @@
 
     .form-group
       = f.label :lunchbox
-      = f.select :lunchbox_id, Lunchbox.all.map{|l| [l.name, l.id] }, {}, {class: 'form-control'}
+      = f.select :lunchbox_id, Lunchbox.all.map {|l| [price_tag(l), l.id] }, {}, {class: 'form-control'}
 
     = f.button '注文を確定する', class: 'btn btn-primary'
