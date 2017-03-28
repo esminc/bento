@@ -8,7 +8,6 @@ end
 gem 'rails', '5.0.1'
 
 gem 'bootstrap-sass'
-gem 'draper'
 gem 'holiday_jp'
 gem 'jquery-rails'
 gem 'pg'

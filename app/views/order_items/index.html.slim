@@ -5,7 +5,7 @@ table.table.table-hover
     tr
       th.col-xs-1.text-center = '-'
       - @lunchboxes.each do |lunchbox|
-        th = lunchbox.price_tag
+        th = price_tag(lunchbox)
       th.text-center = '-'
 
   tbody

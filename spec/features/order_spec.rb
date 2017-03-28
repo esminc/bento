@@ -110,7 +110,7 @@ RSpec.feature 'Order', type: :feature do
       click_link(order_item.customer_name)
       fill_in '名前', with: new_name
 
-      expect(page).to have_select('order_item[lunchbox_id]', selected: lunchbox.decorate.price_tag)
+      expect(page).to have_select('order_item[lunchbox_id]', selected: "#{lunchbox.name} (#{lunchbox.price}円)")
       select new_lunchbox_tag, from: 'order_item[lunchbox_id]'
 
       click_button '注文を確定する'
