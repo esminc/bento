@@ -17,6 +17,7 @@ gem 'puma'
 gem 'sass-rails'
 gem 'seed-fu'
 gem 'slim-rails'
+gem 'turbolinks'
 
 group :development, :test do
   gem 'dotenv-rails'
