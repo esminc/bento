@@ -1,5 +1,4 @@
 class Admin::ApplicationController < ApplicationController
-
   private
 
   def basic_authorization

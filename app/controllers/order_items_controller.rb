@@ -26,9 +26,6 @@ class OrderItemsController < ApplicationController
     end
   end
 
-  def edit
-  end
-
   def update
     if @order_item.update(order_item_params)
       redirect_to order_order_items_path(@order_item.order), notice: '注文情報を更新しました'
@@ -38,18 +35,19 @@ class OrderItemsController < ApplicationController
   end
 
   def destroy
-    @order_item.destroy
-    if @order_item
+    if @order_item.destroy
       notice = "#{@order_item.customer_name} さんの #{@order_item.lunchbox.name} の注文を取り消しました。"
-      redirect_to order_order_items_path(@order_item.order) , notice: notice
+      redirect_to order_order_items_path(@order_item.order), notice: notice
+    else
+      redirect_to order_order_items_path(@order_item.order), alert: '予期せぬエラーが発生しました'
     end
   end
 
   def receive
     if @order_item.update(received_at: Time.current)
-      redirect_to order_order_items_path(@order_item.order) , notice: '注文した弁当を受け取りました'
+      redirect_to order_order_items_path(@order_item.order), notice: '注文した弁当を受け取りました'
     else
-      redirect_to order_order_items_path(@order_item.order) , alert: '予期せぬエラーが発生しました'
+      redirect_to order_order_items_path(@order_item.order), alert: '予期せぬエラーが発生しました'
     end
   end
 
@@ -60,8 +58,7 @@ class OrderItemsController < ApplicationController
   end
 
   def order_close_confirmation
-    redirect_to order_order_items_path(@order) , notice: '注文受付が締め切られたため注文できません' if @order.closed?
-    return
+    redirect_to order_order_items_path(@order), notice: '注文受付が締め切られたため注文できません' if @order.closed?
   end
 
   def set_order_item

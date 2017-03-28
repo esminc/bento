@@ -14,5 +14,4 @@ FactoryGirl.define do
     name 'sample弁当'
     price 400
   end
-
 end

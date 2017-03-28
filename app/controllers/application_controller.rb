@@ -10,5 +10,4 @@ class ApplicationController < ActionController::Base
       user == ENV['USER_ID'] && pass == ENV['USER_PASS']
     end
   end
-
 end
