@@ -58,8 +58,7 @@ class OrderItemsController < ApplicationController
   end
 
   def order_close_confirmation
-    redirect_to order_order_items_path(@order) , notice: '注文受付が締め切られたため注文できません' if @order.closed?
-    return
+    redirect_to order_order_items_path(@order), notice: '注文受付が締め切られたため注文できません' if @order.closed?
   end
 
   def set_order_item
