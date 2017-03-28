@@ -36,7 +36,7 @@ RSpec.feature 'Order', type: :feature do
       expect(page).not_to have_text(user_name)
 
       click_link('予約する')
-      fill_in '名前', with: 'customer'
+      fill_in '注文者名', with: 'customer'
       select lunchbox.name, from: 'order_item[lunchbox_id]'
 
       order.close(Time.zone.local(2017, 2, 1))
@@ -44,7 +44,7 @@ RSpec.feature 'Order', type: :feature do
       click_button '注文を確定する'
 
       expect(page).not_to have_text(user_name)
-      expect(page).to have_text('既に弁当の発注が行われています')
+      expect(page).to have_text('注文受付が締め切られたため注文できません')
       expect(page).to have_text('受取確認')
 
     end
@@ -58,7 +58,7 @@ RSpec.feature 'Order', type: :feature do
       expect(page).not_to have_text(user_name)
 
       click_link('予約する')
-      fill_in '名前', with: user_name
+      fill_in '注文者名', with: user_name
       select lunchbox.name, from: 'order_item[lunchbox_id]'
 
       click_button '注文を確定する'
@@ -108,7 +108,7 @@ RSpec.feature 'Order', type: :feature do
       expect(page).to have_text(order_item.customer_name)
 
       click_link(order_item.customer_name)
-      fill_in '名前', with: new_name
+      fill_in '注文者名', with: new_name
 
       expect(page).to have_select('order_item[lunchbox_id]', selected: "#{lunchbox.name} (#{lunchbox.price}円)")
       select new_lunchbox_tag, from: 'order_item[lunchbox_id]'
