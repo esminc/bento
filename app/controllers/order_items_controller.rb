@@ -26,8 +26,6 @@ class OrderItemsController < ApplicationController
     end
   end
 
-  def edit; end
-
   def update
     if @order_item.update(order_item_params)
       redirect_to order_order_items_path(@order_item.order), notice: '注文情報を更新しました'
