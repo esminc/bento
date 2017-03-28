@@ -18,10 +18,10 @@ table.table.table-hover
               .text-center = '✓'
         td= link_to '予約取り消し', order_order_item_path(@order, item), \
           method: :delete, class: 'btn btn-danger', \
-          data: {confirm: '注文を取り消してよろしいですか？'}
+          data: {confirm: '予約を取り消してよろしいですか？'}
 
 = link_to "#{l(@order.date)} のお弁当を予約する", new_order_order_item_path(@order), class: 'btn btn-primary btn-lg'
 
 nav
   ul.nav.nav-pills.nav-stacked
-    li = link_to '注文日選択画面へもどる', orders_path
+    li = link_to '予約日選択画面へもどる', orders_path
