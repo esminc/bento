@@ -5,9 +5,9 @@ module OrdersHelper
 
   def order_items_title(date)
     if date == Time.current.to_date
-      "今日（#{l(date)}）の注文一覧"
+      "今日（#{l(date)}）の予約一覧"
     else
-      "#{l(date)}の注文一覧"
+      "#{l(date)}の予約一覧"
     end
   end
 end

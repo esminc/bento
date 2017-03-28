@@ -1,8 +1,8 @@
 h1
-  | 注文内容の更新
+  | 予約内容の更新
 = render partial: 'form', locals: {order: @order, order_item: @order_item}
 
 nav
   ul.nav.nav-pills.nav-stacked
-    li = link_to '注文日選択画面へもどる', orders_path
+    li = link_to '予約日選択画面へもどる', orders_path
     li = link_to "#{l(@order.date)} の予約一覧へもどる", order_order_items_path(@order)

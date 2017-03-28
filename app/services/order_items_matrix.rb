@@ -7,7 +7,7 @@ class OrderItemsMatrix
     matrix = []
 
     grouped_items = ActiveRecord::Base.connection.select_all(aggregate_sql).rows.map do |lunchbox_id, num|
-      [lunchbox_id, num.to_i] # NOTE: 注文の入ってない弁当の数はnilになってるので0にする
+      [lunchbox_id, num.to_i] # NOTE: 予約の入ってない弁当の数はnilになってるので0にする
     end.to_h
     lunchboxes = Lunchbox.where(id: grouped_items.keys).to_a
 
@@ -23,7 +23,7 @@ class OrderItemsMatrix
 
   private
 
-  # NOTE: その日の注文数を弁当毎に集計するSQL
+  # NOTE: その日の予約数を弁当毎に集計するSQL
   def aggregate_sql
     sql = <<-SQL
     SELECT lunchboxes.id, lunchbox_count.cnt

@@ -3,18 +3,18 @@
     | 本日 (#{l(@today_order.date)}) のお弁当を受け取る
   -# TODO インタフェースとしてはイケてないけどとりあえずやりたいことはこういうこと
   p
-    | 本日の注文は締め切りました。受け取りチェックをするには以下のリンクをクリックしてください。
+    | 本日の予約は締め切りました。受け取りチェックをするには以下のリンクをクリックしてください。
   = link_to l(@today_order.date), order_order_items_path(@today_order)
 
 h2
-  | お弁当を注文する
+  | お弁当を予約する
 
 - if @orders.any?
   p
-    | 注文したい日付を選んでください。
+    | 予約したい日付を選んでください。
   - @orders.each do |order|
     ul
       li= link_to l(order.date), order_order_items_path(order)
 - else
   p
-    | 注文できる日がありません。管理者にお問い合わせください。
+    | 予約できる日がありません。管理者にお問い合わせください。
