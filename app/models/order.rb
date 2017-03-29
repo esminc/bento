@@ -28,4 +28,11 @@ class Order < ApplicationRecord
   def closed?
     closed_at?
   end
+
+  def aggregate_items(lunchboxes)
+    spread_table = lunchboxes.map {|lunchbox| [lunchbox.id, 0] }.to_h
+    order_items.each {|item| spread_table[item.lunchbox_id] += 1 }
+    prices = spread_table.values.zip(lunchboxes.pluck(:price)).map {|num, price| num * price }
+    [spread_table.values << spread_table.values.sum, prices << prices.sum]
+  end
 end

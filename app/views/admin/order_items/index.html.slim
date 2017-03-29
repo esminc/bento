@@ -1,11 +1,10 @@
 h1 = order_items_title(@order.date)
 
 table.table.table-default
-  - @matrix.each do |row|
-    tr
-      - row.each do |item|
-        td.text-right = item
-
+  thead
+    = admin_thead(@lunchboxes)
+  tbody
+    = admin_tbody(@aggregate_order_items)
 
 - if @order.closed_at?
   p
