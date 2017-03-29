@@ -6,7 +6,7 @@ table.table.table-default
   tbody
     = admin_tbody(@aggregate_order_items)
 
-- if @order.closed_at?
+- if @order.closed?
   p
     = closed_info(@order)
 - else
