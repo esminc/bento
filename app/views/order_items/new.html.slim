@@ -1,5 +1,5 @@
 h1
-  | 新しく予約する
+  | 新しく予約する(#{l(@order.date)} 分)
 = render partial: 'form', locals: {order: @order, order_item: @order_item}
 
 nav
