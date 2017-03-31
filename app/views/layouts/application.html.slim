@@ -2,13 +2,14 @@ doctype html
 html
   head
     title Bento
-    meta name="viewport" content="width=device-width, initial-scale=1.0"
-    = stylesheet_link_tag    "application", media: 'all', 'data-turbolinks-track' => 'reload'
-    = javascript_include_tag "application", 'data-turbolinks-track' => 'reload'
+    meta name='viewport' content='width=device-width, initial-scale=1.0'
+    = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => 'reload'
+    = javascript_include_tag 'application', 'data-turbolinks-track' => 'reload'
     = csrf_meta_tags
 
   body
-    - messages = flash.to_hash.slice(*%w(notice alert))
+    - flash_classes = %w(notice alert)
+    - messages = flash.to_hash.slice(*flash_classes)
     - if messages.any?
       .container
         .flash-message
