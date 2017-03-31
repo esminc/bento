@@ -41,3 +41,4 @@ group :development do
   gem 'annotate'
   gem 'listen'
 end
+gem 'nokogiri', '>= 1.7.1'
