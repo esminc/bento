@@ -4,10 +4,6 @@ RSpec.feature 'Order', type: :feature do
   given!(:lunchbox) { create(:lunchbox) }
   given(:order) { create(:order) }
 
-  before :each do
-    user_login
-  end
-
   feature '予約の確認' do
     scenario '予約者は自分の予約を確認できる' do
       order_item = create(:order_item, order: order, lunchbox: lunchbox)
