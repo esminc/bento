@@ -13,6 +13,6 @@
 
     .form-group
       = f.label :lunchbox
-      = f.select :lunchbox_id, Lunchbox.all.map {|l| [price_tag(l), l.id] }, {}, {class: 'form-control'}
+      = f.select :lunchbox_id, Lunchbox.all.map {|l| [price_tag(l), l.id] }, {}, class: 'form-control'
 
     = f.button '予約を確定する', class: 'btn btn-primary'

@@ -1,7 +1,7 @@
 - if @today_order&.closed?
   h2
     | 本日 (#{l(@today_order.date)}) のお弁当を受け取る
-  -# TODO インタフェースとしてはイケてないけどとりあえずやりたいことはこういうこと
+  / TODO インタフェースとしてはイケてないけどとりあえずやりたいことはこういうこと
   p
     | 本日の予約は締め切りました。受け取りチェックをするには以下のリンクをクリックしてください。
   = link_to l(@today_order.date), order_order_items_path(@today_order)
