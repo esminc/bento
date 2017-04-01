@@ -11,7 +11,7 @@
 
 1. リポジトリを clone もしくは fork し、ライブラリをインストールする
 ```
-(clone もしくは clone してから)
+( git clone してから)
 
 cd path/to/bento
 bundle install
