@@ -4,7 +4,7 @@ table.table.table-default
   thead
     = admin_thead(@lunchboxes)
   tbody
-    = admin_tbody(@aggregate_order_items)
+    = admin_tbody(@item_numbers, @item_prices)
 
 - if @order.closed?
   p

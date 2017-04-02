@@ -5,9 +5,9 @@ module Admin::OrderItemsHelper
     create_row(:th, header)
   end
 
-  def admin_tbody(aggregate_order_items)
-    number_body = ['個数'] + aggregate_order_items[0]
-    price_body = ['合計'] + aggregate_order_items[1]
+  def admin_tbody(item_numbers, item_prices)
+    number_body = ['個数'] + item_numbers
+    price_body = ['合計'] + item_prices
 
     create_row(:td, number_body) + create_row(:td, price_body)
   end
