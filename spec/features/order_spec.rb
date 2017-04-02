@@ -4,25 +4,35 @@ RSpec.feature 'Order', type: :feature do
   given!(:lunchbox) { create(:lunchbox) }
   given(:order) { create(:order) }
 
-  feature '発注未成立' do
-    scenario '発注が成立していない場合、その旨のメッセージが表示される' do
+  before(:each) do
+    Rails.application.config.x.minimum_order_number= 0
+  end
+  feature '発注が未成立のまま確定された場合' do
+    scenario 'トップページにメッセージが表示される' do
+      Rails.application.config.x.minimum_order_number= 3
+
       Timecop.freeze(order.date) do
-
-
-        ENV['MINIMUM_ORDER_NUMBER'] = '3'
         create(:order_item, order: order, lunchbox: lunchbox)
         create(:order_item, order: order, lunchbox: lunchbox)
 
         order.close(Time.zone.local(2017, 2, 1))
-
         visit orders_path
-
-        expect(page).to have_text('の発注は注文数不足のため注文されせんでした')
+        expect(page).to have_text('注文数不足のため注文されせんでした')
       end
-
-
     end
 
+    scenario '注文の確認画面へ遷移しようとするとトップページに戻される' do
+      Rails.application.config.x.minimum_order_number= 3
+
+      Timecop.freeze(order.date) do
+        create(:order_item, order: order, lunchbox: lunchbox)
+        create(:order_item, order: order, lunchbox: lunchbox)
+
+        order.close(Time.zone.local(2017, 2, 1))
+        visit order_order_items_path(order)
+        expect(page).to have_text('注文数不足のため注文されせんでした')
+      end
+    end
   end
 
   feature '予約の確認' do
