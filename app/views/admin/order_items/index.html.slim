@@ -1,13 +1,12 @@
 h1 = order_items_title(@order.date)
 
 table.table.table-default
-  - @matrix.each do |row|
-    tr
-      - row.each do |item|
-        td.text-right = item
+  thead
+    = admin_thead(@lunchboxes)
+  tbody
+    = admin_tbody(@item_numbers, @item_prices)
 
-
-- if @order.closed_at?
+- if @order.closed?
   p
     = closed_info(@order)
 - else
