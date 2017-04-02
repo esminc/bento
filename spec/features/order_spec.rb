@@ -5,11 +5,11 @@ RSpec.feature 'Order', type: :feature do
   given(:order) { create(:order) }
 
   before(:each) do
-    Rails.application.config.x.minimum_order_number= 0
+    Rails.application.config.x.minimum_order_number = 0
   end
   feature '発注が未成立のまま確定された場合' do
     scenario 'トップページにメッセージが表示される' do
-      Rails.application.config.x.minimum_order_number= 3
+      Rails.application.config.x.minimum_order_number = 3
 
       Timecop.freeze(order.date) do
         create(:order_item, order: order, lunchbox: lunchbox)
@@ -22,7 +22,7 @@ RSpec.feature 'Order', type: :feature do
     end
 
     scenario '注文の確認画面へ遷移しようとするとトップページに戻される' do
-      Rails.application.config.x.minimum_order_number= 3
+      Rails.application.config.x.minimum_order_number = 3
 
       Timecop.freeze(order.date) do
         create(:order_item, order: order, lunchbox: lunchbox)

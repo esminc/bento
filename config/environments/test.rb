@@ -41,6 +41,5 @@ Rails.application.configure do
   # config.action_view.raise_on_missing_translations = true
 
   config.x.basic_auth = false
-  config.x.minimum_order_number= 0
-
+  config.x.minimum_order_number = 0
 end

@@ -16,6 +16,6 @@ module Bento
     config.active_record.default_timezone = :local
     config.i18n.default_locale = :ja
 
-    config.x.minimum_order_number= 3
+    config.x.minimum_order_number = 3
   end
 end
