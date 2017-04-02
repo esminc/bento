@@ -1,5 +1,5 @@
 - if @today_order&.closed?
-  - if !@today_order&.minimum_order_satisfied?
+  - if !@today_order&.order_shortage?
     h2
       | 本日 (#{l(@today_order.date)}) の発注は注文数不足のため注文されせんでした
   - else

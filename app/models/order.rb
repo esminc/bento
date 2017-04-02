@@ -29,8 +29,9 @@ class Order < ApplicationRecord
     closed_at?
   end
 
-  def minimum_order_satisfied?
-    self.order_items.count >= Rails.application.config.x.minimum_order_number
+  def order_shortage?
+    minimum = 3
+    self.order_items.count < minimum
   end
 
   def aggregate_items(lunchboxes)
