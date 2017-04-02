@@ -29,6 +29,10 @@ class Order < ApplicationRecord
     closed_at?
   end
 
+  def satisfied?
+    self.order_items.count >= ENV['MINIMUM_ORDER_NUMBER'].to_i
+  end
+
   def aggregate_items(lunchboxes)
     reservation_number_table = aggregate_reservation_numbers(lunchboxes.map(&:id))
     reservation_price_table =  aggregate_reservation_prices(reservation_number_table, lunchboxes.map(&:price))

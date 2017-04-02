@@ -1,4 +1,7 @@
-- if @today_order&.closed?
+- if !@today_order&.satisfied?
+  h2
+    | 本日 (#{l(@today_order.date)}) の発注は注文数不足のため注文されせんでした
+- elsif @today_order&.closed?
   h2
     | 本日 (#{l(@today_order.date)}) のお弁当を受け取る
   / TODO インタフェースとしてはイケてないけどとりあえずやりたいことはこういうこと
