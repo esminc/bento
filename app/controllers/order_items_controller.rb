@@ -1,10 +1,13 @@
 class OrderItemsController < ApplicationController
   before_action :set_order, except: :receive
   before_action :order_close_confirmation, only: %i(new create edit destroy)
-  before_action :order_satisfy_confirmation, only: %i(index)
   before_action :set_order_item, only: %i(edit update destroy receive)
 
   def index
+    if @order.item_count_shortage? && @order.closed?
+      redirect_to orders_path
+      return
+    end
     @lunchboxes = Lunchbox.all
     if @order.closed?
       render 'receive'
@@ -60,10 +63,6 @@ class OrderItemsController < ApplicationController
 
   def order_close_confirmation
     redirect_to order_order_items_path(@order), notice: '予約受付が締め切られたため予約できません' if @order.closed?
-  end
-
-  def order_satisfy_confirmation
-    redirect_to orders_path if @order.item_count_shortage? && @order.closed?
   end
 
   def set_order_item
