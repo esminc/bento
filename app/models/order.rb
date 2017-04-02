@@ -30,7 +30,7 @@ class Order < ApplicationRecord
   end
 
   def satisfied?
-    self.order_items.count >= ENV['MINIMUM_ORDER_NUMBER'].to_i
+    self.order_items.count >= Rails.application.config.x.minimum_order_number
   end
 
   def aggregate_items(lunchboxes)
