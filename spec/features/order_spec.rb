@@ -8,8 +8,7 @@ RSpec.feature 'Order', type: :feature do
     scenario 'トップページにメッセージが表示される' do
 
       Timecop.freeze(order.date) do
-        create(:order_item, order: order, lunchbox: lunchbox)
-        create(:order_item, order: order, lunchbox: lunchbox)
+        create_list(:order_item, 2, order: order, lunchbox: lunchbox)
 
         order.close(Time.zone.local(2017, 2, 1))
         visit orders_path
@@ -19,8 +18,7 @@ RSpec.feature 'Order', type: :feature do
 
     scenario '注文の確認画面へ遷移しようとするとトップページに戻される' do
       Timecop.freeze(order.date) do
-        create(:order_item, order: order, lunchbox: lunchbox)
-        create(:order_item, order: order, lunchbox: lunchbox)
+        create_list(:order_item, 2, order: order, lunchbox: lunchbox)
 
         order.close(Time.zone.local(2017, 2, 1))
         visit order_order_items_path(order)
@@ -41,13 +39,15 @@ RSpec.feature 'Order', type: :feature do
 
   feature '予約の新規作成' do
     scenario 'Order が締め切られている場合、予約者は新しく予約できない' do
-      order = create(:order, :closed)
+      order.close
+      create_list(:order_item, 3, order: order, lunchbox: lunchbox)
       visit new_order_order_item_path(order)
 
       expect(page).to have_text('受取確認')
     end
 
     scenario 'Order が締め切られている場合、予約者は新しい予約を確定できない' do
+      create_list(:order_item, 3, order: order, lunchbox: lunchbox)
       user_name = 'sample-user'
 
       visit order_order_items_path(order)
@@ -103,6 +103,7 @@ RSpec.feature 'Order', type: :feature do
 
     scenario 'Order が締め切られている場合、予約者は自分の予約をキャンセルできない' do
       order = create(:order, :closed)
+      create_list(:order_item, 2, order: order, lunchbox: lunchbox)
       order_item = create(:order_item, order: order, lunchbox: lunchbox)
 
       visit order_order_items_path(order)
@@ -138,7 +139,7 @@ RSpec.feature 'Order', type: :feature do
     end
 
     scenario 'Order が締め切られている場合、予約者は自分の予約を編集できない' do
-      order = create(:order, :closed)
+      order.close
       order_item = create(:order_item, order: order, lunchbox: lunchbox)
 
       visit order_order_items_path(order)
@@ -151,12 +152,12 @@ RSpec.feature 'Order', type: :feature do
     given(:order) { create(:order, :closed) }
 
     scenario '予約者は自分の予約した弁当を受け取ったことをシステムに知らせることが出来る' do
-      create(:order_item, order: order, lunchbox: lunchbox)
+      create_list(:order_item, 3, order: order, lunchbox: lunchbox)
 
       visit order_order_items_path(order)
       expect(page).to have_text('受取確認')
 
-      click_link '受け取る'
+      click_link '受け取る', match: :first
 
       expect(page).to have_text('受け取り済')
     end
