@@ -63,7 +63,7 @@ class OrderItemsController < ApplicationController
   end
 
   def order_satisfy_confirmation
-    redirect_to orders_path if !@order.order_shortage? && @order.closed?
+    redirect_to orders_path if @order.item_count_shortage? && @order.closed?
   end
 
   def set_order_item

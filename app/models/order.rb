@@ -29,9 +29,12 @@ class Order < ApplicationRecord
     closed_at?
   end
 
-  def order_shortage?
+  def item_count_satisfied?
     minimum = 3
     self.order_items.count < minimum
+  end
+  def item_count_shortage?
+    !item_count_satisfied?
   end
 
   def aggregate_items(lunchboxes)
