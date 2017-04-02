@@ -6,7 +6,6 @@ RSpec.feature 'Order', type: :feature do
 
   feature '発注が未成立のまま確定された場合' do
     scenario 'トップページにメッセージが表示される' do
-
       Timecop.freeze(order.date) do
         create_list(:order_item, 2, order: order, lunchbox: lunchbox)
 

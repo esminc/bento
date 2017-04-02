@@ -33,6 +33,7 @@ class Order < ApplicationRecord
     minimum = 3
     self.order_items.count >= minimum
   end
+
   def item_count_shortage?
     !item_count_satisfied?
   end
