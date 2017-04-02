@@ -29,7 +29,7 @@ class Order < ApplicationRecord
     closed_at?
   end
 
-  def satisfied?
+  def minimum_order_satisfied?
     self.order_items.count >= Rails.application.config.x.minimum_order_number
   end
 
