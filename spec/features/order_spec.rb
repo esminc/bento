@@ -13,7 +13,7 @@ RSpec.feature 'Order', type: :feature do
 
         order.close(Time.zone.local(2017, 2, 1))
         visit orders_path
-        expect(page).to have_text('注文数不足のため注文されせんでした')
+        expect(page).to have_text('注文数不足のため注文されませんでした')
       end
     end
 
@@ -24,7 +24,7 @@ RSpec.feature 'Order', type: :feature do
 
         order.close(Time.zone.local(2017, 2, 1))
         visit order_order_items_path(order)
-        expect(page).to have_text('注文数不足のため注文されせんでした')
+        expect(page).to have_text('注文数不足のため注文されませんでした')
       end
     end
   end
