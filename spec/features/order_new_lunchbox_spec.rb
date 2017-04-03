@@ -52,6 +52,5 @@ RSpec.feature '新たに弁当を予約する', type: :feature do
       expect(page).to have_text('予約受付が締め切られたため予約できません')
       expect(page).to have_text('受取確認')
     end
-
   end
 end

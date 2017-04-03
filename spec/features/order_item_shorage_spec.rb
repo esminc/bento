@@ -5,7 +5,6 @@ RSpec.feature '予約数が規定の数に足りない時', type: :feature do
   given(:order) { create(:order) }
 
   feature '確定された場合' do
-
     before(:each) do
       Timecop.freeze(order.date) do
         create_list(:order_item, 2, order: order, lunchbox: lunchbox)
