@@ -11,6 +11,7 @@
 
 class Order < ApplicationRecord
   SHOW_COUNT = 10
+  MINIMUM_ORDER_ITM_COUNT = 3
 
   has_many :order_items
 
@@ -30,8 +31,7 @@ class Order < ApplicationRecord
   end
 
   def item_count_satisfied?
-    minimum = 3
-    self.order_items.count >= minimum
+    self.order_items.count >= MINIMUM_ORDER_ITM_COUNT
   end
 
   def item_count_shortage?
