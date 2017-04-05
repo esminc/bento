@@ -18,6 +18,7 @@ RSpec.feature '予約のキャンセル', type: :feature do
 
   scenario '予約が締め切られている場合、予約者は自分の予約をキャンセルできない' do
     order = create(:order, :closed)
+    create_list(:order_item, 2, order: order, lunchbox: lunchbox)
     order_item = create(:order_item, order: order, lunchbox: lunchbox)
 
     visit order_order_items_path(order)

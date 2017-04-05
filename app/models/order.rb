@@ -11,6 +11,7 @@
 
 class Order < ApplicationRecord
   SHOW_COUNT = 10
+  MINIMUM_ORDER_ITEM_COUNT = 3
 
   has_many :order_items
 
@@ -27,6 +28,14 @@ class Order < ApplicationRecord
 
   def closed?
     closed_at?
+  end
+
+  def item_count_satisfied?
+    self.order_items.count >= MINIMUM_ORDER_ITEM_COUNT
+  end
+
+  def item_count_shortage?
+    !item_count_satisfied?
   end
 
   def aggregate_items(lunchboxes)

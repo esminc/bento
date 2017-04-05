@@ -25,12 +25,14 @@ RSpec.feature '新たに弁当を予約する', type: :feature do
   context '予約が締め切られている場合' do
     scenario '新しく予約できない' do
       order = create(:order, :closed)
+      create_list(:order_item, 3, order: order, lunchbox: lunchbox)
       visit new_order_order_item_path(order)
 
       expect(page).to have_text('受取確認')
     end
 
     scenario '新しい予約を確定できない' do
+      create_list(:order_item, 3, order: order, lunchbox: lunchbox)
       user_name = 'sample-user'
 
       visit order_order_items_path(order)
