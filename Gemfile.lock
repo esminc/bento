@@ -243,7 +243,6 @@ DEPENDENCIES
   holiday_jp
   jquery-rails
   listen
-  nokogiri (>= 1.7.1)
   pg
   pry-byebug
   pry-rails
