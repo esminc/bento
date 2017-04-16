@@ -44,6 +44,13 @@ class Order < ApplicationRecord
     [reservation_number_table << reservation_number_table.sum, reservation_price_table << reservation_price_table.sum]
   end
 
+  def ordered_lunchboxes_and_count
+    grouped_order_items = order_items.joins(:lunchbox).group('lunchboxes.id').order('lunchboxes.id').count
+    grouped_order_items.map do |lunchbox_id, count|
+      {lunchbox: Lunchbox.find(lunchbox_id), count: count}
+    end
+  end
+
   private
 
   def aggregate_reservation_numbers(lunchbox_ids)

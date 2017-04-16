@@ -1,0 +1,9 @@
+.mail-template
+  | 本日のお弁当の注文をお願いします。内容は以下のとおりです。
+
+  .mail-template__order-list
+    - @order.ordered_lunchboxes_and_count.each do |data|
+      .order-list__order
+        = "- #{data[:lunchbox].name}: #{data[:count]} 個"
+
+  | よろしくお願いいたします。
