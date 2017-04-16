@@ -17,9 +17,9 @@ namespace :order do
 
     begin
       order = Order.create!(date: new_order_date)
-      Idobata.post "#{I18n.l(order.date)} の Order レコードが正常に作成されました"
+      Idobata.post_for_developper "#{I18n.l(order.date)} の Order レコードが正常に作成されました"
     rescue => e
-      Idobata.post e.message
+      Idobata.post_for_developper e.message
     end
   end
 end
