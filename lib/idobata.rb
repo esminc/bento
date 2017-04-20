@@ -1,5 +1,5 @@
 module Idobata
-  def post_for_developper(message)
+  def post_for_developer(message)
     url = ENV['IDOBATA_DEVELOPER_HOOK_URL']
     Faraday.post(url, source: message, format: 'html') if url.present?
   end
@@ -9,5 +9,5 @@ module Idobata
     Faraday.post(url, source: message, format: 'html') if url.present?
   end
 
-  module_function :post_for_developper, :post_for_user
+  module_function :post_for_developer, :post_for_user
 end
