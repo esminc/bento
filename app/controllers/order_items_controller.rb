@@ -1,7 +1,7 @@
 class OrderItemsController < ApplicationController
   before_action :set_order, except: :receive
-  before_action :order_close_confirmation, only: %i(new create edit destroy)
-  before_action :set_order_item, only: %i(edit update destroy receive)
+  before_action :order_close_confirmation, only: %i[new create edit destroy]
+  before_action :set_order_item, only: %i[edit update destroy receive]
 
   def index
     if @order.item_count_shortage? && @order.closed?
