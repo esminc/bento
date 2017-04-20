@@ -1,4 +1,4 @@
-require 'Idobata'
+require 'idobata'
 
 class Admin::OrdersController < Admin::ApplicationController
   def close
