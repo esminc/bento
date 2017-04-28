@@ -45,3 +45,9 @@ cp .env.sample .env
 ```
 bin/rails server
 ```
+
+5. テストの実行
+
+```
+bundle exec rspec spec
+```
