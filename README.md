@@ -37,7 +37,8 @@ cp .env.sample .env
 - `ADMIN_PASS`: 管理者がダッシュボードにアクセスする際のパスワード（必須）
 - `USER_ID`: お弁当を頼みたい人がアクセスする際の ID（必須）
 - `USER_PASS`: お弁当を頼みたい人がアクセスする際のパスワード（必須）
-- `IDOBATA_HOOK_URL`: Order レコードが作成された際に通知を送る idobata room の WebHook URL（任意）
+- `IDOBATA_DEVELOPER_HOOK_URL`: Order レコードが作成された際に通知を送る idobata room の WebHook URL（任意）
+- `IDOBATA_USER_HOOK_URL`: 注文が締め切られた時にお弁当の発注の可否の通知を送る idobata room の WebHook URL（任意）
 
 4. サーバを起動
 
