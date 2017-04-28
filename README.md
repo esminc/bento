@@ -4,7 +4,7 @@
 
 ## 使用技術
 
-- Ruby On Rails 5.0.1
+- Ruby on Rails 5.0.1
 - Ruby 2.4.0
 
 ## 動かし方
