@@ -4,6 +4,10 @@ class OrderItemsController < ApplicationController
   before_action :set_order_item, only: %i(edit update destroy receive)
 
   def index
+    if @order.item_count_shortage? && @order.closed?
+      redirect_to orders_path
+      return
+    end
     @lunchboxes = Lunchbox.all
     if @order.closed?
       render 'receive'

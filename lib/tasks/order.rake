@@ -1,8 +1,11 @@
 require_relative './rake_helpers'
+require_relative '../idobata'
 
 namespace :order do
   desc '平日分の Order レコードを作成する'
   task create: :environment do
+    include Idobata
+
     today = Time.current.beginning_of_day.to_date
     orders_from_today = Order.where('date > ?', today)
 
@@ -12,7 +15,11 @@ namespace :order do
                        next_weekday_of(today)
                      end
 
-    order = Order.create!(date: new_order_date)
-    puts "#{order.date} の Order レコードが正常に作成されました"
+    begin
+      order = Order.create!(date: new_order_date)
+      Idobata.post_for_developer "#{I18n.l(order.date)} の Order レコードが正常に作成されました"
+    rescue => e
+      Idobata.post_for_developer e.message
+    end
   end
 end

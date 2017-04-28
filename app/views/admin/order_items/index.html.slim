@@ -1,15 +1,20 @@
 h1 = order_items_title(@order.date)
 
 table.table.table-default
-  - @matrix.each do |row|
-    tr
-      - row.each do |item|
-        td.text-right = item
+  thead
+    = admin_thead(@lunchboxes)
+  tbody
+    = admin_tbody(@item_numbers, @item_prices)
 
-
-- if @order.closed_at?
+- if @order.closed?
   p
     = closed_info(@order)
+
+  p
+    | 以下の内容をコピーしてメールにそのまま貼り付けることができます。
+
+  = render 'mail_template'
+
 - else
   = form_tag close_admin_order_path(@order), method: :patch do
     = submit_tag '予約を締め切る', class: 'btn btn-primary btn-lg'
