@@ -5,14 +5,14 @@ RSpec.feature 'お弁当やさんへのメールの文言を表示する', type:
   given!(:jouben_dai) { create(:lunchbox, name: '上弁ライス大') }
   given!(:tokuben_futsuu) { create(:lunchbox, name: '特弁ライス普') }
 
-  background do
-    Timecop.freeze(order.date) do
-      create_list(:order_item, 2, lunchbox: jouben_dai, order: order)
-      create_list(:order_item, 3, lunchbox: tokuben_futsuu, order: order)
-    end
-  end
-
   context 'その日の予約を締め切る前' do
+    background do
+      Timecop.freeze(order.date) do
+        create_list(:order_item, 2, lunchbox: jouben_dai, order: order)
+        create_list(:order_item, 3, lunchbox: tokuben_futsuu, order: order)
+      end
+    end
+
     it 'メールの文言は表示されていない' do
       Timecop.freeze(order.date) do
         visit todays_order_admin_orders_path
@@ -25,15 +25,44 @@ RSpec.feature 'お弁当やさんへのメールの文言を表示する', type:
   end
 
   context 'その日の予約を締め切った後' do
-    it '予約された弁当とその個数が整形されて表示される' do
-      Timecop.freeze(order.date) do
-        visit todays_order_admin_orders_path
-        click_button('予約を締め切る')
+    context '予約が成立したとき' do
+      background do
+        Timecop.freeze(order.date) do
+          create_list(:order_item, 2, lunchbox: jouben_dai, order: order)
+          create_list(:order_item, 3, lunchbox: tokuben_futsuu, order: order)
+        end
+      end
 
-        text = '本日のお弁当の注文をお願いします。内容は以下のとおりです。- 上弁ライス大: 2 個- 特弁ライス普: 3 個よろしくお願いいたします。'
+      it '予約された弁当とその個数が整形されて表示される' do
+        Timecop.freeze(order.date) do
+          visit todays_order_admin_orders_path
+          click_button('予約を締め切る')
 
-        within '.mail-template' do
-          expect(page).to have_text text
+          text = '本日のお弁当の注文をお願いします。内容は以下のとおりです。- 上弁ライス大: 2 個- 特弁ライス普: 3 個よろしくお願いいたします。'
+
+          within '.mail-template' do
+            expect(page).to have_text text
+          end
+        end
+      end
+    end
+
+    context '予約が不成立だったとき' do
+      background do
+        Timecop.freeze(order.date) do
+          create_list(:order_item, 1, lunchbox: jouben_dai, order: order)
+          create_list(:order_item, 1, lunchbox: tokuben_futsuu, order: order)
+        end
+      end
+
+      it 'メールのテンプレートは表示されない' do
+        Timecop.freeze(order.date) do
+          visit todays_order_admin_orders_path
+          click_button('予約を締め切る')
+
+          # XXX: 今のところメールのテンプレート自体にはタイトルなど見た目で識別できるものがないので、
+          #      CSS を見ることでそれ自体が表示されているかを判断している。
+          expect(page).not_to have_css '.mail-template'
         end
       end
     end
