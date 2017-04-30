@@ -5,6 +5,7 @@ class Admin::OrdersController < Admin::ApplicationController
     order = Order.find(params[:id])
     order.close!
 
+    # TODO: 例外を入れる PR がマージされたら、ここを realized? で書き換える
     if order.item_count_satisfied?
       Idobata.post_for_user "本日(#{I18n.l(order.date)})分の注文が成立しました:smiley:今日はお弁当があります:bento:"
     else

@@ -5,7 +5,7 @@ class OrderItemsController < ApplicationController
 
   def index
     # rubocop:disable Style/AndOr
-    if @order.item_count_shortage? && @order.closed?
+    if @order.not_realized?
       redirect_to orders_path and return
     end
     # rubocop:enable Style/AndOr
