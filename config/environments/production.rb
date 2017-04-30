@@ -85,4 +85,5 @@ Rails.application.configure do
   config.active_record.dump_schema_after_migration = false
 
   config.x.basic_auth = true
+  config.x.enable_idobata_notification = true
 end
