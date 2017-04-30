@@ -24,20 +24,13 @@ class OrderItemsController < ApplicationController
 
   def create
     @order_item = @order.order_items.build(order_item_params)
-
-    if @order_item.save
-      redirect_to order_order_items_path(@order), notice: '予約しました'
-    else
-      render :new
-    end
+    @order_item.save!
+    redirect_to order_order_items_path(@order), notice: '予約しました'
   end
 
   def update
-    if @order_item.update(order_item_params)
-      redirect_to order_order_items_path(@order_item.order), notice: '予約情報を更新しました'
-    else
-      render :edit
-    end
+    @order_item.update!(order_item_params)
+    redirect_to order_order_items_path(@order_item.order), notice: '予約情報を更新しました'
   end
 
   def destroy
