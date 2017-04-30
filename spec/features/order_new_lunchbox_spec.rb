@@ -44,7 +44,7 @@ RSpec.feature '新たに弁当を予約する', type: :feature do
       fill_in '予約者名', with: 'customer'
       select lunchbox.name, from: 'order_item[lunchbox_id]'
 
-      order.close(Time.zone.local(2017, 2, 1))
+      order.close!(Time.zone.local(2017, 2, 1))
 
       click_button '予約を確定する'
 

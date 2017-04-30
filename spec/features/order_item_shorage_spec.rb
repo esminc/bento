@@ -8,7 +8,7 @@ RSpec.feature '予約数が規定の数に足りない時', type: :feature do
     before(:each) do
       Timecop.freeze(order.date) do
         create_list(:order_item, 2, order: order, lunchbox: lunchbox)
-        order.close(Time.zone.local(2017, 2, 1))
+        order.close!(Time.zone.local(2017, 2, 1))
       end
     end
 
