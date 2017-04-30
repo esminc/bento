@@ -18,6 +18,7 @@ namespace :order do
     begin
       order = Order.create!(date: new_order_date)
       Idobata.post("#{I18n.l(order.date)} の Order レコードが正常に作成されました", ENV['IDOBATA_DEVELOPER_HOOK_URL'])
+      url = ENV['IDOBATA_DEVELOPER_HOOK_URL']
     rescue => e
       Idobata.post_for_developer e.message
     end
