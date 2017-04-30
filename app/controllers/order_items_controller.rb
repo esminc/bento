@@ -4,10 +4,12 @@ class OrderItemsController < ApplicationController
   before_action :set_order_item, only: %i(edit update destroy receive)
 
   def index
+    # rubocop:disable Style/AndOr
     if @order.item_count_shortage? && @order.closed?
-      redirect_to orders_path
-      return
+      redirect_to orders_path and return
     end
+    # rubocop:enable Style/AndOr
+
     @lunchboxes = Lunchbox.all
     if @order.closed?
       render 'receive'
