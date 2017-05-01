@@ -21,7 +21,7 @@ bundle install
 
 ```
 cp config/database.yml.sample config/database.yml
-bin/rake db:create db:migrate db:seed_fu
+bin/rails db:create db:migrate db:seed_fu
 ```
 
 3. 環境変数のセットアップ
