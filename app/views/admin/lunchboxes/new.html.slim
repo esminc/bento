@@ -1,5 +1,22 @@
 h1 New lunchbox
 
-== render 'form'
+= form_for(@lunchbox, url: admin_lunchboxes_path) do |f|
+  - if @lunchbox.errors.any?
+    #error_explanation
+      h2 = "#{pluralize(@lunchbox.errors.count, "error")} prohibited this lunchbox from being saved:"
+      ul
+        - @lunchbox.errors.full_messages.each do |message|
+          li = message
 
-= link_to 'Back', lunchboxes_path
+  fieldset
+    .form-group
+      = f.label :name
+      = f.text_field :name, class: 'form-control'
+
+    .form-group
+      = f.label :price
+      = f.text_field :price, class: 'form-control'
+
+  .actions = f.submit
+
+/= link_to 'Back', lunchboxes_path

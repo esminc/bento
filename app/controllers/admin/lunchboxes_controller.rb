@@ -24,7 +24,7 @@ class Admin::LunchboxesController < ApplicationController
     @lunchbox = Lunchbox.new(lunchbox_params)
 
     if @lunchbox.save
-      redirect_to @lunchbox, notice: 'Lunchbox was successfully created.'
+      redirect_to admin_lunchboxes_path, notice: 'Lunchbox was successfully created.'
     else
       render :new
     end
@@ -51,8 +51,13 @@ class Admin::LunchboxesController < ApplicationController
       @lunchbox = Lunchbox.find(params[:id])
     end
 
-    # Only allow a trusted parameter "white list" through.
+    # # Only allow a trusted parameter "white list" through.
+  # def lunchbox_params
+  #   params.fetch(:lunchbox, {})
+  # end
+
     def lunchbox_params
-      params.fetch(:lunchbox, {})
+      params.require(:lunchbox).permit(:name, :price)
     end
+
 end
