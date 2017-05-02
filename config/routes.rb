@@ -10,6 +10,8 @@ Rails.application.routes.draw do
         get :todays_order, to: 'order_items#index'
       end
     end
+    resources :lunchboxes
+    # , only: %i(create)
   end
 
   resources :orders, only: %i(index) do

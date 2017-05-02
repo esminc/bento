@@ -1,0 +1,9 @@
+= form_for @lunchbox do |f|
+  - if @lunchbox.errors.any?
+    #error_explanation
+      h2 = "#{pluralize(@lunchbox.errors.count, "error")} prohibited this lunchbox from being saved:"
+      ul
+        - @lunchbox.errors.full_messages.each do |message|
+          li = message
+
+  .actions = f.submit
