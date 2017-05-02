@@ -32,10 +32,14 @@ class Admin::LunchboxesController < ApplicationController
 
   # PATCH/PUT /lunchboxes/1
   def update
+
     if @lunchbox.update(lunchbox_params)
       redirect_to admin_lunchboxes_path, notice: 'Lunchbox was successfully updated.'
     else
-      render :edit
+      puts("#########")
+      puts("#########")
+      puts("#########")
+      render :edit, notice: '更新できませんでした'
     end
   end
 
