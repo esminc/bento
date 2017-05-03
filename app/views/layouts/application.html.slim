@@ -14,7 +14,7 @@ html
       .container
         .flash-message
           - messages.each do |type, message|
-            .alert.alert-dismissible.fade.in(class="#{bootstrap_alert_class(type)}")
+            .alert.alert-dismissible.fadeout.fade.in(class="#{bootstrap_alert_class(type)}")
               = message
               button.close(data-dismiss='alert')
                 span(aria-hidden='true') &times;
