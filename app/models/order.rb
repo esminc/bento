@@ -22,8 +22,8 @@ class Order < ApplicationRecord
       .reject(&:closed?)
   }
 
-  def close(close_time = Time.current)
-    update(closed_at: close_time)
+  def close!(close_time = Time.current)
+    update!(closed_at: close_time)
   end
 
   def closed?

@@ -4,10 +4,12 @@ class OrderItemsController < ApplicationController
   before_action :set_order_item, only: %i(edit update destroy receive)
 
   def index
+    # rubocop:disable Style/AndOr
     if @order.item_count_shortage? && @order.closed?
-      redirect_to orders_path
-      return
+      redirect_to orders_path and return
     end
+    # rubocop:enable Style/AndOr
+
     @lunchboxes = Lunchbox.all
     if @order.closed?
       render 'receive'
@@ -21,38 +23,25 @@ class OrderItemsController < ApplicationController
   end
 
   def create
-    @order_item = @order.order_items.build(order_item_params)
-
-    if @order_item.save
-      redirect_to order_order_items_path(@order), notice: '予約しました'
-    else
-      render :new
-    end
+    order_item = @order.order_items.build(order_item_params)
+    order_item.save!
+    redirect_to order_order_items_path(@order), notice: '予約しました'
   end
 
   def update
-    if @order_item.update(order_item_params)
-      redirect_to order_order_items_path(@order_item.order), notice: '予約情報を更新しました'
-    else
-      render :edit
-    end
+    @order_item.update!(order_item_params)
+    redirect_to order_order_items_path(@order_item.order), notice: '予約情報を更新しました'
   end
 
   def destroy
-    if @order_item.destroy
-      notice = "#{@order_item.customer_name} さんの #{@order_item.lunchbox.name} の予約を取り消しました。"
-      redirect_to order_order_items_path(@order_item.order), notice: notice
-    else
-      redirect_to order_order_items_path(@order_item.order), alert: '予期せぬエラーが発生しました'
-    end
+    @order_item.destroy!
+    notice = "#{@order_item.customer_name} さんの #{@order_item.lunchbox.name} の予約を取り消しました。"
+    redirect_to order_order_items_path(@order_item.order), notice: notice
   end
 
   def receive
-    if @order_item.update(received_at: Time.current)
-      redirect_to order_order_items_path(@order_item.order), notice: '予約した弁当を受け取りました'
-    else
-      redirect_to order_order_items_path(@order_item.order), alert: '予期せぬエラーが発生しました'
-    end
+    @order_item.update!(received_at: Time.current)
+    redirect_to order_order_items_path(@order_item.order), notice: '予約した弁当を受け取りました'
   end
 
   private
