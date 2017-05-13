@@ -59,6 +59,8 @@ Style/NumericLiterals:
 Style/PercentLiteralDelimiters:
   PreferredDelimiters:
     '%': '{}'
+    '%i': '()'
+    '%w': '()'
 
 Style/RedundantSelf:
   Enabled: false
