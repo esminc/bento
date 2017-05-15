@@ -1,5 +1,9 @@
 h1 = order_items_title(@order.date)
 
+- if @order.closed?
+  .order-message.flash-message
+    = order_message
+
 table.table.table-bordered
   thead
     = admin_thead(@lunchboxes)

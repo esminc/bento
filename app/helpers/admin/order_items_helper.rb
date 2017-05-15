@@ -12,6 +12,14 @@ module Admin::OrderItemsHelper
     create_row(:td, number_body) + create_row(:td, price_body)
   end
 
+  def order_message
+    if @order.item_count_satisfied?
+      content_tag :div, '本日のお弁当の注文をお願いします。', class: 'alert alert-info'
+    else
+      content_tag :div, '本日のお弁当の注文は不要です。', class: 'alert alert-danger'
+    end
+  end
+
   private
 
   def create_row(t, texts)
