@@ -17,10 +17,8 @@ namespace :order do
 
     begin
       url = ENV['IDOBATA_DEVELOPER_HOOK_URL']
-      Order.transaction do
-        order = Order.create!(date: new_order_date)
-        Idobata.post("#{I18n.l(order.date)} の Order レコードが正常に作成されました", url)
-      end
+      order = Order.create!(date: new_order_date)
+      Idobata.post("#{I18n.l(order.date)} の Order レコードが正常に作成されました", url)
     rescue => e
       Idobata.post("Order レコード作成時にエラーが発生しました: #{e.message}", url)
     end
