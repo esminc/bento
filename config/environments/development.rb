@@ -62,4 +62,5 @@ Rails.application.configure do
   end
 
   config.x.basic_auth = false
+  config.x.enable_idobata_notification = true
 end
