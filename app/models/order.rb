@@ -30,12 +30,12 @@ class Order < ApplicationRecord
     closed_at?
   end
 
-  def item_count_satisfied?
-    self.order_items.count >= MINIMUM_ORDER_ITEM_COUNT
+  def realized?
+    closed? && item_count_satisfied?
   end
 
-  def item_count_shortage?
-    !item_count_satisfied?
+  def not_realized?
+    closed? && item_count_shortage?
   end
 
   def aggregate_items(lunchboxes)
@@ -63,5 +63,13 @@ class Order < ApplicationRecord
     numbers.zip(prices).map do |num, price|
       num * price
     end
+  end
+
+  def item_count_satisfied?
+    self.order_items.count >= MINIMUM_ORDER_ITEM_COUNT
+  end
+
+  def item_count_shortage?
+    !item_count_satisfied?
   end
 end

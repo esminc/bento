@@ -13,7 +13,7 @@ module Admin::OrderItemsHelper
   end
 
   def order_message
-    if @order.item_count_satisfied?
+    if @order.realized?
       content_tag :div, '本日のお弁当の注文をお願いします。', class: 'alert alert-info'
     else
       content_tag :div, '本日のお弁当の注文は不要です。', class: 'alert alert-danger'

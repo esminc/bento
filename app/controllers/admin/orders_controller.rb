@@ -5,7 +5,7 @@ class Admin::OrdersController < Admin::ApplicationController
     order = Order.find(params[:id])
 
     order.close!
-    message = if order.item_count_satisfied?
+    message = if order.realized?
                 "本日(#{I18n.l(order.date)})分の注文が成立しました:smiley:今日はお弁当があります:bento:"
               else
                 "本日(#{I18n.l(order.date)})分の注文は成立しませんでした:cry:今日のランチは外に食べに行きましょう:fork_and_knife:"
