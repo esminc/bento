@@ -27,7 +27,7 @@ group :development, :test do
   gem 'dotenv-rails'
   gem 'pry-byebug'
   gem 'pry-rails'
-  gem 'rubocop', require: false, github: 'bbatsov/rubocop'
+  gem 'rubocop', require: false
   gem 'slim_lint'
 end
 
