@@ -5,9 +5,7 @@ class OrderItemsController < ApplicationController
 
   def index
     # rubocop:disable Style/AndOr
-    if @order.not_realized?
-      redirect_to orders_path and return
-    end
+    redirect_to orders_path and return if @order.not_realized?
     # rubocop:enable Style/AndOr
 
     @lunchboxes = Lunchbox.all

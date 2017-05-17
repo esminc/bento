@@ -29,12 +29,11 @@ RSpec.feature '予約の修正', type: :feature do
   end
 
   scenario '予約が締め切られている場合、予約者は自分の予約を編集できない' do
-    order = create(:order, :closed)
-    create_list(:order_item, 2, order: order, lunchbox: lunchbox)
-    order_item = create(:order_item, order: order, lunchbox: lunchbox)
+    order_items = create_list(:order_item, 3, order: order, lunchbox: lunchbox)
+    order.close!
 
     visit order_order_items_path(order)
 
-    expect(page).not_to have_link(order_item.customer_name)
+    expect(page).not_to have_link(order_items[0].customer_name)
   end
 end
