@@ -3,6 +3,12 @@ require 'idobata'
 class Admin::OrdersController < Admin::ApplicationController
   def close
     order = Order.find(params[:id])
+    order_date = I18n.l(order.date)
+
+    # rubocop:disable Style/AndOr
+    redirect_to todays_order_admin_orders_path, alert: "#{order_date}はすでに締め切り処理が済んでいます" \
+      and return if order.closed?
+    # rubocop:enable Style/AndOr
 
     order.close!
     message = if order.realized?
