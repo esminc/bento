@@ -1,13 +1,14 @@
-- if @today_order&.realized?
-  h2
-    | 本日 (#{l(@today_order.date)}) のお弁当を受け取る
-  / TODO インタフェースとしてはイケてないけどとりあえずやりたいことはこういうこと
-  p
-    | 本日の予約は締め切りました。受け取りチェックをするには以下のリンクをクリックしてください。
-  = link_to l(@today_order.date), order_order_items_path(@today_order)
-- else
-  h2
-    | 本日 (#{l(@today_order.date)}) の発注は注文数不足のため注文されませんでした
+- if @today_order
+  - if @today_order.realized?
+    h2
+      | 本日 (#{l(@today_order.date)}) のお弁当を受け取る
+    / TODO インタフェースとしてはイケてないけどとりあえずやりたいことはこういうこと
+    p
+      | 本日の予約は締め切りました。受け取りチェックをするには以下のリンクをクリックしてください。
+    = link_to l(@today_order.date), order_order_items_path(@today_order)
+  - else
+    h2
+      | 本日 (#{l(@today_order.date)}) の発注は注文数不足のため注文されませんでした
 h2
   | お弁当を予約する
 
