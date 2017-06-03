@@ -1,4 +1,5 @@
-- if @today_order&.realized?
+- if !@today_order
+- elsif @today_order&.realized?
   h2
     | 本日 (#{l(@today_order.date)}) のお弁当を受け取る
   / TODO インタフェースとしてはイケてないけどとりあえずやりたいことはこういうこと
