@@ -13,7 +13,7 @@ RSpec.describe Order, type: :model do
       create(:order_item, order: order, lunchbox_id: lunchbox1.id)
     end
 
-    it '注文された弁当の個数と値段が集計される' do
+    it '予約された弁当の個数と値段が集計される' do
       expect(order.aggregate_items(Lunchbox.all)).to eq(
         [
           [2, 3, 0, 5],
