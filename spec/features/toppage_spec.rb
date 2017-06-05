@@ -3,9 +3,9 @@ require 'rails_helper'
 RSpec.feature '予約を締め切ったあとには、注文の成立・非成立を知らせるメッセージがトップページに表示される', type: :feature do
   let(:jouben_dai) { create(:lunchbox, name: '上弁ライス大') }
   let(:tokuben_futsuu) { create(:lunchbox, name: '特弁ライス普') }
-  let(:order1) { create(:order, date: 'Thu, 1 Jun 2017') }
-  let!(:order2) { create(:order, date: 'Fri, 2 Jun 2017') }
-  let!(:order3) { create(:order, date: 'Mon, 5 Jun 2017') }
+  let(:order1) { create(:order, date: 'Thu, 1 Jun 2017', closed_at: nil) }
+  let!(:order2) { create(:order, date: 'Fri, 2 Jun 2017', closed_at: nil) }
+  let!(:order3) { create(:order, date: 'Mon, 5 Jun 2017', closed_at: nil) }
 
   context '締め切り前' do
     context '成立数に達していたとき' do
