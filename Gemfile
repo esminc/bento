@@ -35,6 +35,7 @@ group :test do
   gem 'database_rewinder'
   gem 'factory_girl_rails'
   gem 'ffaker'
+  gem 'launchy'
   gem 'rspec-rails'
   gem 'timecop'
 end
