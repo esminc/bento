@@ -1,4 +1,4 @@
-# Bento [![Build Status](https://travis-ci.org/colorbox/bento.svg?branch=master)](https://travis-ci.org/colorbox/bento)
+# Bento [![Build Status](https://travis-ci.org/esminc/bento.svg?branch=master)](https://travis-ci.org/esminc/bento)
 
 社内向けお弁当注文システムです。
 
