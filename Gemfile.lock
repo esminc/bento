@@ -50,6 +50,8 @@ GEM
     ast (2.3.0)
     autoprefixer-rails (6.7.7.2)
       execjs
+    bootsnap (1.1.0)
+      msgpack (~> 1.0)
     bootstrap-sass (3.3.7)
       autoprefixer-rails (>= 5.2.1)
       sass (>= 3.3.4)
@@ -108,6 +110,7 @@ GEM
     mime-types-data (3.2016.0521)
     mini_portile2 (2.1.0)
     minitest (5.10.2)
+    msgpack (1.1.0)
     multipart-post (2.0.0)
     nio4r (2.0.0)
     nokogiri (1.7.2)
@@ -239,6 +242,7 @@ PLATFORMS
 DEPENDENCIES
   airbrake (~> 5.0)
   annotate
+  bootsnap
   bootstrap-sass
   bullet
   capybara
