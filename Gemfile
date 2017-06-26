@@ -10,6 +10,7 @@ end
 gem 'rails', '5.1.1'
 
 gem 'airbrake', '~> 5.0' # errbit から、バージョン指定しろとの指示
+gem 'bootsnap'
 gem 'bootstrap-sass'
 gem 'faraday'
 gem 'holiday_jp'
