@@ -5,7 +5,7 @@ AllCops:
     - db/fixtures/**/*
     - bin/**
   DisplayCopNames: true
-  TargetRubyVersion: 2.4
+  TargetRubyVersion: 2.4.1
 
 Rails:
   Enabled: true
