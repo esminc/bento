@@ -5,12 +5,15 @@ AllCops:
     - db/fixtures/**/*
     - bin/**
   DisplayCopNames: true
-  TargetRubyVersion: 2.4.1
+  TargetRubyVersion: 2.4.2
 
 Rails:
   Enabled: true
 
 Lint/AssignmentInCondition:
+  Enabled: false
+
+Lint/RescueWithoutErrorClass:
   Enabled: false
 
 Metrics/AbcSize:

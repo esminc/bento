@@ -13,7 +13,7 @@ class Order < ApplicationRecord
   SHOW_COUNT = 10
   MINIMUM_ORDER_ITEM_COUNT = 3
 
-  has_many :order_items
+  has_many :order_items, dependent: :destroy
 
   scope :available, -> {
     where('date >= ?', Time.current) \
