@@ -28,7 +28,7 @@ group :development, :test do
   gem 'pry-byebug'
   gem 'pry-rails'
   gem 'rubocop', '0.51.0', require: false
-  gem 'slim_lint'
+  gem 'slim_lint', '0.15.0'
 end
 
 group :test do
