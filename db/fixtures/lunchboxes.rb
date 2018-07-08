@@ -1,10 +1,4 @@
 Lunchbox.seed(:id,
-  {id: 1, name: '上弁ライス大', price: 420},
-  {id: 2, name: '特弁ライス大', price: 470},
-  {id: 3, name: '上弁ライス普', price: 370},
-  {id: 4, name: '特弁ライス普', price: 420},
-  {id: 5, name: '上弁ライス半', price: 370},
-  {id: 6, name: '特弁ライス半', price: 420},
-  {id: 7, name: '上弁おかずのみ', price: 320},
-  {id: 8, name: '特弁おかずのみ', price: 370},
+  {id: 1, name: 'ヘルシー', price: 400},
+  {id: 2, name: 'デラックス', price: 500},
 )
