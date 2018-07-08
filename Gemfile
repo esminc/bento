@@ -7,7 +7,7 @@ git_source(:github) do |repo_name|
   "https://github.com/#{repo_name}.git"
 end
 
-gem 'rails', '5.1.2'
+gem 'rails', '5.2.0'
 
 gem 'airbrake', '~> 5.0' # errbit から、バージョン指定しろとの指示
 gem 'bootsnap'
