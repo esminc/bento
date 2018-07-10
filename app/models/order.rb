@@ -11,7 +11,7 @@
 
 class Order < ApplicationRecord
   SHOW_COUNT = 10
-  MINIMUM_ORDER_ITEM_COUNT = 3
+  MINIMUM_ORDER_ITEM_COUNT = 1
 
   has_many :order_items, dependent: :destroy
 
