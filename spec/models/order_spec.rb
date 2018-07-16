@@ -38,7 +38,6 @@ RSpec.describe Order, type: :model do
 
   describe '#not_realized?' do
     before do
-      create_list(:order_item, 1, order: order, lunchbox_id: lunchbox1.id)
       order.close!
     end
 
