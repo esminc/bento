@@ -61,9 +61,6 @@ RSpec.feature '予約を締め切ったあとには、注文の成立・非成�
     context '成立数に達していなかったとき' do
       scenario '注文の非成立を知らせるメッセージが表示される' do
         Timecop.freeze(order1.date) do
-          create_list(:order_item, 1, lunchbox: jouben_dai, order: order1)
-          create_list(:order_item, 1, lunchbox: tokuben_futsuu, order: order1)
-
           visit root_path
 
           expect(page).to have_content '本日 (2017/06/01(木)) は予約数不足のため注文されませんでした'

@@ -46,13 +46,6 @@ RSpec.feature '発注者へのメッセージを表示する', type: :feature do
     end
 
     context '予約が不成立だったとき' do
-      background do
-        Timecop.freeze(order.date) do
-          create_list(:order_item, 1, lunchbox: jouben_dai, order: order)
-          create_list(:order_item, 1, lunchbox: tokuben_futsuu, order: order)
-        end
-      end
-
       it '発注が不要な旨のメッセージが表示される' do
         Timecop.freeze(order.date) do
           visit todays_order_admin_orders_path
