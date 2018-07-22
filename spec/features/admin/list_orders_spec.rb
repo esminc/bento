@@ -10,9 +10,9 @@ RSpec.feature '注文可能日の一覧', type: :feature do
     Timecop.freeze(order1.date) do
       visit admin_orders_path
 
-      expect(page).to have_text '2017/06/01(木)'
-      expect(page).to have_text '2017/06/02(金)'
-      expect(page).to have_text '2017/06/05(月)'
+      expect(page).to have_selector('input[type=submit][value="2017/06/01(木) を注文不可日にする"]')
+      expect(page).to have_selector('input[type=submit][value="2017/06/02(金) を注文不可日にする"]')
+      expect(page).to have_selector('input[type=submit][value="2017/06/05(月) を注文不可日にする"]')
     end
   end
 
