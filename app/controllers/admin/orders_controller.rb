@@ -1,6 +1,10 @@
 require 'idobata'
 
 class Admin::OrdersController < Admin::ApplicationController
+  def index
+    @orders = Order.available
+  end
+
   def close
     order = Order.find(params[:id])
 
@@ -13,5 +17,13 @@ class Admin::OrdersController < Admin::ApplicationController
     Idobata.post(message, ENV['IDOBATA_USER_HOOK_URL']) if Rails.application.config.x.enable_idobata_notification
 
     redirect_to todays_order_admin_orders_path, notice: '予約を締め切りました'
+  end
+
+  def deny
+    order = Order.find(params[:id])
+
+    order.close!
+
+    redirect_to admin_orders_path, notice: "#{l(order.date)} を予約不可日を設定しました"
   end
 end

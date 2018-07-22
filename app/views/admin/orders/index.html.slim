@@ -1,0 +1,8 @@
+h2
+  | 弁当注文を不可にさせたい日にちを選択してください
+- if @orders.any?
+  p
+    - @orders.each do |order|
+      ul
+        li= form_tag deny_admin_order_path(order), method: :patch, data: {confirm: "#{l(order.date)} を注文不可日にします"} do
+            = submit_tag "#{l(order.date)} を注文不可日にする", class: 'btn btn-default btn-lg'
