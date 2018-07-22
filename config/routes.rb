@@ -2,7 +2,7 @@ Rails.application.routes.draw do
   root 'orders#index'
 
   namespace :admin do
-    resources :orders, only: %i() do
+    resources :orders, only: %i(index) do
       member do
         patch :close
       end
