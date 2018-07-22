@@ -18,4 +18,12 @@ class Admin::OrdersController < Admin::ApplicationController
 
     redirect_to todays_order_admin_orders_path, notice: '予約を締め切りました'
   end
+
+  def deny
+    order = Order.find(params[:id])
+
+    order.close!
+
+    redirect_to admin_orders_path, notice: '予約不可日を設定しました'
+  end
 end

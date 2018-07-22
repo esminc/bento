@@ -17,12 +17,14 @@ RSpec.feature '注文可能日の一覧', type: :feature do
   end
 
   scenario '特定の日付の注文を不可にすることができる' do
-    visit admin_orders_path
+    Timecop.freeze(order1.date) do
+      visit admin_orders_path
 
-    expect(Order.available.count).to eq(2)
+      expect(Order.available.count).to eq(3)
 
-    click_link '2017/06/01/(木) を注文不可日にする'
+      click_button'2017/06/01(木) を注文不可日にする'
 
-    expect(Order.available.count).to eq(2)
+      expect(Order.available.count).to eq(2)
+    end
   end
 end

@@ -5,6 +5,7 @@ Rails.application.routes.draw do
     resources :orders, only: %i(index) do
       member do
         patch :close
+        patch :deny
       end
       collection do
         get :todays_order, to: 'order_items#index'
