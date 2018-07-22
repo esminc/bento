@@ -24,6 +24,6 @@ class Admin::OrdersController < Admin::ApplicationController
 
     order.close!
 
-    redirect_to admin_orders_path, notice: '予約不可日を設定しました'
+    redirect_to admin_orders_path, notice: "#{l(order.date)} を予約不可日を設定しました"
   end
 end
