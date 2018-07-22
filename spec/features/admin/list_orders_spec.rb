@@ -22,7 +22,7 @@ RSpec.feature '注文可能日の一覧', type: :feature do
 
       expect(Order.available.count).to eq(3)
 
-      click_button'2017/06/01(木) を注文不可日にする'
+      click_button '2017/06/01(木) を注文不可日にする'
 
       expect(Order.available.count).to eq(2)
     end
