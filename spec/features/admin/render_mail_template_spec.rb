@@ -38,10 +38,12 @@ RSpec.feature 'お弁当やさんへのメールの文言を表示する', type:
           visit todays_order_admin_orders_path
           click_button('予約を締め切る')
 
-          text = '本日のお弁当の注文をお願いします。内容は以下のとおりです。- 上弁ライス大: 2 個- 特弁ライス普: 3 個よろしくお願いいたします。'
+          texts = ['本日のお弁当の注文をお願いします。内容は以下のとおりです。', '- 上弁ライス大: 2 個', '- 特弁ライス普: 3 個', 'よろしくお願いいたします。']
 
           within '.mail-template' do
-            expect(page).to have_text text
+            texts.each do |text|
+              expect(page).to have_text text
+            end
           end
         end
       end
