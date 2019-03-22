@@ -1,13 +1,13 @@
 source 'https://rubygems.org'
 
-ruby '2.5.1'
+ruby '2.5.5'
 
 git_source(:github) do |repo_name|
   repo_name = "#{repo_name}/#{repo_name}" unless repo_name.include?('/')
   "https://github.com/#{repo_name}.git"
 end
 
-gem 'rails', '5.2.2'
+gem 'rails', '5.2.2.1'
 
 gem 'airbrake', '~> 5.0' # errbit から、バージョン指定しろとの指示
 gem 'bootsnap'
