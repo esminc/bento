@@ -9,6 +9,26 @@
 
 ## 動かし方
 
+### docker-compose
+
+```
+cp config/database.yml.sample config/database.yml
+
+# imageのbuild
+docker-compose build
+
+# DBのマイグレーション
+docker-compose run app bundle exec rails db:create db:migrate db:seed_fu
+
+# サーバー起動
+docker-compose up
+
+# テスト実行
+docker-compose run app bundle exec rspec spec
+```
+
+### ローカルにインストール
+
 1. リポジトリを clone もしくは fork し、ライブラリをインストールする
 ```
 ( git clone してから)
