@@ -64,3 +64,5 @@ bower.json
 
 # Ignore database configuration
 config/database.yml
+
+spec/examples.txt
