@@ -1,1 +1,1 @@
-include FactoryGirl::Syntax::Methods
+include FactoryBot::Syntax::Methods
