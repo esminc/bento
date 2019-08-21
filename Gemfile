@@ -34,7 +34,7 @@ end
 group :test do
   gem 'capybara'
   gem 'database_rewinder'
-  gem 'factory_girl_rails'
+  gem 'factory_bot_rails'
   gem 'ffaker'
   gem 'launchy'
   gem 'rspec-rails'

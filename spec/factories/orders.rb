@@ -9,12 +9,12 @@
 #  updated_at :datetime         not null
 #
 
-FactoryGirl.define do
+FactoryBot.define do
   factory :order do
-    date Time.zone.local(2017, 2, 1)
+    date { Time.zone.local(2017, 2, 1) }
 
     trait :closed do
-      closed_at Time.zone.local(2017, 2, 1, 9, 20)
+      closed_at { Time.zone.local(2017, 2, 1, 9, 20) }
     end
   end
 end

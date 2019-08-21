@@ -11,8 +11,8 @@
 #  updated_at    :datetime         not null
 #
 
-FactoryGirl.define do
+FactoryBot.define do
   factory :order_item do
-    customer_name 'テスト'
+    customer_name { 'テスト' }
   end
 end
