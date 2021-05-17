@@ -3,7 +3,7 @@ language: ruby
 rvm:
   - 2.6.6
 
-bundler_args: --without production
+bundler_args: "--without production"
 cache: bundler
 
 services:
@@ -17,3 +17,7 @@ script:
   - bundle exec rspec
   - bundle exec rubocop
   - bundle exec slim-lint app/views
+
+deploy:
+  api_key:
+    secure: CdaErGwjD12/fLwcRfLsFYkqy3SCPHjdPX3zPRuCdO04NqsBrBqtLCfytFeVZJ3m2vLUH7rR67UzWMN+NGXKhevbj8aSb0obCn/XUxZtfUNheU7g4z7ADvdPxH6BAptPNC7MFzQqVvJ4c+c4k/k+6YiVB7yFYi3DjAaIxU+RR0GoslRacXEZh4z0w480rwi3YZW6ItIFiGfZKL5+zFPgDI/B/J5MDbTJ/yhlhvVwnRVwryEn4OAktaI8aeFw6arlp1AiP/g6ffVFZSetAaUxboWCWoFlp4D3Sl7+HUkAEAAi2oLj7jQAtqRoCZf9GUhOAvs4kSs1TSNFHUKTbk8KILngk4TWTXT6VrsJC1ZbpA4luR0M5dAH3HGYqUHmf8bsV7+jcYgQ/lehc1mb1lQt2YwwjL0rwguS4BPEX4+5nWwLsXo6MgLWjzUd0VqiIFtEZBJbF1AISFbn6H/Age5Chvn9V6UbB5TKFc+boFcN9UyYIN8iM9rS3YisDwg1wrC8VrBdSIpnSo8trYsF3VQ7mC/Q8txOVBvTHsnpIaNMXcVMeBhCUrcoNFToRPkx03jMOWE54MCXk1/mFBxYVBc6YqpIZAQq37zmN2+3x3fpjGZvE6VQdqykVXRhpeNlCROcQ8CndSJ1qtOpGK3j3YnAXFNzy+wkamS09rS+Jyjt2io=
