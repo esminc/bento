@@ -1,0 +1,21 @@
+h1 Listing lunchboxes
+
+table
+  thead
+    tr
+      th
+      th
+      th
+      th
+
+  tbody
+    - @lunchboxes.each do |lunchbox|
+      tr
+        td = lunchbox.name
+        td = link_to 'Show', admin_lunchbox_path(lunchbox)
+        td = link_to 'Edit', edit_admin_lunchbox_path(lunchbox)
+        td = link_to 'Destroy', admin_lunchbox_path(lunchbox), data: { confirm: 'Are you sure?' }, method: :delete
+
+br
+
+= link_to 'New Lunchbox', new_admin_lunchbox_path
